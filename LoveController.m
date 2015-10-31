@@ -34,7 +34,7 @@
 
 }
 -(void)requestData{
-    NSString *urlString =[Url queryWishModelsWishType:@"32"];
+    NSString *urlString =[Url queryWishModelsWishType:@"33"];
     NSLog(@"%@",urlString);
     [Netmanager GetRequestWithUrlString:urlString finished:^(id responseobj) {
         NSArray *array =responseobj[@"modellist"];

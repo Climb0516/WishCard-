@@ -30,7 +30,7 @@
 #if ((_APP_ENVIRMENT_) == 0)
 #define kHostAddr  @"http://103.43.184.235:8080/radio"
 #elif ((_APP_ENVIRMENT_) == 1)
-#define kHostAddr  @"http://192.168.7.10:8080/radio"
+#define kHostAddr  @"http://192.168.3.1:8080/radio"
 #endif
 
 #define kCodeOK @"0000"

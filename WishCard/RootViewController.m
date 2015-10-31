@@ -100,8 +100,8 @@
 //      判断字典里key对应的是否存在，不存在返回“”    避免出现越界
 -(NSString *)judgeDicEmpty:(NSDictionary *)dic str:(NSString *)str{
     
-    if (dic[str]) {
-        return  dic[str];
+    if ([dic valueForKey:str]) {
+        return  [dic valueForKey:str];
     }else{
         return @"";
     } 

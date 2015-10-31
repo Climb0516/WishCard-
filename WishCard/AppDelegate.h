@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  WishCard
+//  ChinaTransport
 //
-//  Created by WangPandeng on 15/10/29.
-//  Copyright © 2015年 GuoguangGaoTong. All rights reserved.
+//  Created by 王攀登 on 15/8/31.
+//  Copyright (c) 2015年 GuoguangGaoTong. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

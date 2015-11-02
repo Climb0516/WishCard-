@@ -9,6 +9,8 @@
 #import "MytabbarController.h"
 #import "BirthDayController.h"
 #import "LoveController.h"
+#import "ClipImageViewController.h"
+#import "testClipViewController.h"
 
 @interface MytabbarController ()
 
@@ -25,7 +27,9 @@
     nav1.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"生日" image:[UIImage imageNamed:@"GB_FEATURE"] selectedImage:nil];
     
     LoveController *birthVC = [[LoveController alloc] init];
-    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:birthVC];
+//    ClipImageViewController *cvc = [[ClipImageViewController alloc] init];
+    testClipViewController *cvc = [[testClipViewController alloc] init];
+    UINavigationController *nav2 = [[UINavigationController alloc] initWithRootViewController:cvc];
     nav2.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"爱情" image:[UIImage imageNamed:@"GB_BIRTHDAY"] selectedImage:nil];
     
     

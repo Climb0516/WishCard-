@@ -79,6 +79,8 @@
 		63BCD2ED1BE34A8200BE0CB7 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2EA1BE34A8200BE0CB7 /* NJKWebViewProgress.m */; };
 		63BCD2EE1BE34A8200BE0CB7 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2EC1BE34A8200BE0CB7 /* NJKWebViewProgressView.m */; };
 		63BCD2F11BE34D7A00BE0CB7 /* EditWishCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */; };
+		D94DD3D11BE70A6A0088AADF /* ClipImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94DD3D01BE70A6A0088AADF /* ClipImageViewController.m */; settings = {ASSET_TAGS = (); }; };
+		D94DD3D41BE732FA0088AADF /* testClipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94DD3D31BE732FA0088AADF /* testClipViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +247,10 @@
 		63BCD2EC1BE34A8200BE0CB7 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		63BCD2EF1BE34D7A00BE0CB7 /* EditWishCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWishCardController.h; sourceTree = "<group>"; };
 		63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWishCardController.m; sourceTree = "<group>"; };
+		D94DD3CF1BE70A6A0088AADF /* ClipImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClipImageViewController.h; sourceTree = "<group>"; };
+		D94DD3D01BE70A6A0088AADF /* ClipImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClipImageViewController.m; sourceTree = "<group>"; };
+		D94DD3D21BE732FA0088AADF /* testClipViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = testClipViewController.h; sourceTree = "<group>"; };
+		D94DD3D31BE732FA0088AADF /* testClipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = testClipViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +291,10 @@
 				63BCD2E61BE3486800BE0CB7 /* HTML5Controller.m */,
 				63BCD2EF1BE34D7A00BE0CB7 /* EditWishCardController.h */,
 				63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */,
+				D94DD3D21BE732FA0088AADF /* testClipViewController.h */,
+				D94DD3D31BE732FA0088AADF /* testClipViewController.m */,
+				D94DD3CF1BE70A6A0088AADF /* ClipImageViewController.h */,
+				D94DD3D01BE70A6A0088AADF /* ClipImageViewController.m */,
 				631AF14E1BE20A0F00DF15C7 /* WishCard */,
 				631AF1681BE20A0F00DF15C7 /* WishCardTests */,
 				631AF1731BE20A0F00DF15C7 /* WishCardUITests */,
@@ -776,6 +786,7 @@
 				631AF35A1BE232D200DF15C7 /* LoveController.m in Sources */,
 				637D70581BE4ADF4001D2D71 /* MJExtensionConst.m in Sources */,
 				637D70571BE4ADF4001D2D71 /* MJDictionaryCache.m in Sources */,
+				D94DD3D41BE732FA0088AADF /* testClipViewController.m in Sources */,
 				63BCD2E71BE3486800BE0CB7 /* HTML5Controller.m in Sources */,
 				631AF31F1BE2308D00DF15C7 /* AFURLConnectionOperation.m in Sources */,
 				631AF3361BE2308D00DF15C7 /* View+MASAdditions.m in Sources */,
@@ -793,6 +804,7 @@
 				63BCD2EE1BE34A8200BE0CB7 /* NJKWebViewProgressView.m in Sources */,
 				631AF3331BE2308D00DF15C7 /* MASViewConstraint.m in Sources */,
 				631AF32C1BE2308D00DF15C7 /* UIWebView+AFNetworking.m in Sources */,
+				D94DD3D11BE70A6A0088AADF /* ClipImageViewController.m in Sources */,
 				631AF31C1BE2308D00DF15C7 /* AFHTTPSessionManager.m in Sources */,
 				631AF3201BE2308D00DF15C7 /* AFURLRequestSerialization.m in Sources */,
 				631AF1511BE20A0F00DF15C7 /* main.m in Sources */,
@@ -950,6 +962,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WishCard/WishCard.pch;
 				INFOPLIST_FILE = WishCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -967,6 +980,7 @@
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WishCard/WishCard.pch;
 				INFOPLIST_FILE = WishCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",

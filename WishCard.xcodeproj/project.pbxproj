@@ -10,7 +10,6 @@
 		631AF1511BE20A0F00DF15C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF1501BE20A0F00DF15C7 /* main.m */; };
 		631AF15C1BE20A0F00DF15C7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 631AF15B1BE20A0F00DF15C7 /* Assets.xcassets */; };
 		631AF16A1BE20A0F00DF15C7 /* WishCardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF1691BE20A0F00DF15C7 /* WishCardTests.m */; };
-		631AF1751BE20A0F00DF15C7 /* WishCardUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF1741BE20A0F00DF15C7 /* WishCardUITests.m */; };
 		631AF2A31BE22DA400DF15C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF2A11BE22DA400DF15C7 /* AppDelegate.m */; };
 		631AF2C91BE22EF500DF15C7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF2A61BE22EF400DF15C7 /* RootViewController.m */; };
 		631AF2CA1BE22EF500DF15C7 /* UIToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF2B81BE22EF400DF15C7 /* UIToast.m */; };
@@ -91,13 +90,6 @@
 			remoteGlobalIDString = 631AF14B1BE20A0F00DF15C7;
 			remoteInfo = WishCard;
 		};
-		631AF1711BE20A0F00DF15C7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 631AF1441BE20A0F00DF15C7 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 631AF14B1BE20A0F00DF15C7;
-			remoteInfo = WishCard;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -105,10 +97,9 @@
 		631AF1501BE20A0F00DF15C7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		631AF15B1BE20A0F00DF15C7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		631AF1601BE20A0F00DF15C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		631AF1651BE20A0F00DF15C7 /* WishCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishCardTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		631AF1651BE20A0F00DF15C7 /* WishCardTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = WishCardTests.xctest; path = WishCardTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		631AF1691BE20A0F00DF15C7 /* WishCardTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WishCardTests.m; sourceTree = "<group>"; };
 		631AF16B1BE20A0F00DF15C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		631AF1701BE20A0F00DF15C7 /* WishCardUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WishCardUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		631AF1741BE20A0F00DF15C7 /* WishCardUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WishCardUITests.m; sourceTree = "<group>"; };
 		631AF1761BE20A0F00DF15C7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		631AF2A11BE22DA400DF15C7 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -268,13 +259,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		631AF16D1BE20A0F00DF15C7 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -303,7 +287,6 @@
 			children = (
 				631AF14C1BE20A0F00DF15C7 /* WishCard.app */,
 				631AF1651BE20A0F00DF15C7 /* WishCardTests.xctest */,
-				631AF1701BE20A0F00DF15C7 /* WishCardUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -691,25 +674,7 @@
 			name = WishCardTests;
 			productName = WishCardTests;
 			productReference = 631AF1651BE20A0F00DF15C7 /* WishCardTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		631AF16F1BE20A0F00DF15C7 /* WishCardUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 631AF17F1BE20A0F00DF15C7 /* Build configuration list for PBXNativeTarget "WishCardUITests" */;
-			buildPhases = (
-				631AF16C1BE20A0F00DF15C7 /* Sources */,
-				631AF16D1BE20A0F00DF15C7 /* Frameworks */,
-				631AF16E1BE20A0F00DF15C7 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				631AF1721BE20A0F00DF15C7 /* PBXTargetDependency */,
-			);
-			name = WishCardUITests;
-			productName = WishCardUITests;
-			productReference = 631AF1701BE20A0F00DF15C7 /* WishCardUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
@@ -724,10 +689,6 @@
 						CreatedOnToolsVersion = 7.1;
 					};
 					631AF1641BE20A0F00DF15C7 = {
-						CreatedOnToolsVersion = 7.1;
-						TestTargetID = 631AF14B1BE20A0F00DF15C7;
-					};
-					631AF16F1BE20A0F00DF15C7 = {
 						CreatedOnToolsVersion = 7.1;
 						TestTargetID = 631AF14B1BE20A0F00DF15C7;
 					};
@@ -748,7 +709,6 @@
 			targets = (
 				631AF14B1BE20A0F00DF15C7 /* WishCard */,
 				631AF1641BE20A0F00DF15C7 /* WishCardTests */,
-				631AF16F1BE20A0F00DF15C7 /* WishCardUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -769,13 +729,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		631AF1631BE20A0F00DF15C7 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		631AF16E1BE20A0F00DF15C7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -865,14 +818,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		631AF16C1BE20A0F00DF15C7 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				631AF1751BE20A0F00DF15C7 /* WishCardUITests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -880,11 +825,6 @@
 			isa = PBXTargetDependency;
 			target = 631AF14B1BE20A0F00DF15C7 /* WishCard */;
 			targetProxy = 631AF1661BE20A0F00DF15C7 /* PBXContainerItemProxy */;
-		};
-		631AF1721BE20A0F00DF15C7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 631AF14B1BE20A0F00DF15C7 /* WishCard */;
-			targetProxy = 631AF1711BE20A0F00DF15C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -925,8 +865,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = libxml2.x;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = libxml2.x;
@@ -965,8 +904,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = libxml2.x;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = libxml2.x;
@@ -984,6 +922,7 @@
 				GCC_PREFIX_HEADER = WishCard/WishCard.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = WishCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1003,6 +942,7 @@
 				GCC_PREFIX_HEADER = WishCard/WishCard.pch;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = WishCard/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1038,30 +978,6 @@
 			};
 			name = Release;
 		};
-		631AF1801BE20A0F00DF15C7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = WishCardUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cctbn.ChinaTransport.WishCardUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = WishCard;
-				USES_XCTRUNNER = YES;
-			};
-			name = Debug;
-		};
-		631AF1811BE20A0F00DF15C7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				INFOPLIST_FILE = WishCardUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.cctbn.ChinaTransport.WishCardUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_TARGET_NAME = WishCard;
-				USES_XCTRUNNER = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1088,15 +1004,6 @@
 			buildConfigurations = (
 				631AF17D1BE20A0F00DF15C7 /* Debug */,
 				631AF17E1BE20A0F00DF15C7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		631AF17F1BE20A0F00DF15C7 /* Build configuration list for PBXNativeTarget "WishCardUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				631AF1801BE20A0F00DF15C7 /* Debug */,
-				631AF1811BE20A0F00DF15C7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

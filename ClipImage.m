@@ -7,12 +7,12 @@
 //
 
 #import "ClipImage.h"
-#define dragButton 64
+#define dragButton 40
 
 @implementation ClipImage
 {
     UIView *clipView;
-    UIView *clipImageButton;
+//    UIView *clipImageButton;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame andClipRect:(CGRect)clipRect{
@@ -39,11 +39,10 @@
     NSArray *clipButtonArray = @[zeroGround,upRight,downLeft,downRight];
 
     for (int i = 0; i<4;i++) {
-        clipImageButton = [[UIView alloc] initWithFrame:[clipButtonArray[i] CGRectValue]];
+        UIView *clipImageButton = [[UIView alloc] initWithFrame:[clipButtonArray[i] CGRectValue]];
         [clipImageButton addGestureRecognizer:panGesture];
         clipImageButton.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"拖动按钮"]];
-        clipImageButton.userInteractionEnabled = YES;
-        [clipImageButton addGestureRecognizer:panGesture];
+//        clipImageButton.userInteractionEnabled = YES;
         [clipView addSubview:clipImageButton];
         
     }

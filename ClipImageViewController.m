@@ -14,6 +14,7 @@
     UIImageView *clipImageView;
     UIButton *cancelButton;
     UIButton *clipButton;
+    ClipImage *clipImage;
     
 }
 
@@ -26,8 +27,12 @@
     // Do any additional setup after loading the view.
 //    [self drawMyLayer];
     [self creatUI];
-    [self creatRect];
+//    [self creatRect];
     [super.navigationController setNavigationBarHidden:YES animated:TRUE];
+    CGRect imageRect = [self getFrameSizeForImage:clipImageView.image inImageView:clipImageView];
+    clipImage = [[ClipImage alloc] initWithFrame:self.view.frame andClipRect:imageRect];
+    clipImage.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.5];
+    [self.view addSubview:clipImage];
 }
 
 - (void)creatUI{
@@ -42,17 +47,25 @@
     
 }
 
--(void)drawRectWithContext:(CGContextRef)context{
-    //添加矩形对象
-    CGRect rect=CGRectMake(20, 50, 280.0, 50.0);
-    CGContextAddRect(context,rect);
-    //设置属性
-    [[UIColor blueColor]set];
-    //绘制
-    CGContextDrawPath(context, kCGPathFillStroke);
+- (CGRect)getFrameSizeForImage:(UIImage *)image inImageView:(UIImageView *)imageView {
+    
+    float hfactor = image.size.width / imageView.frame.size.width;
+    float vfactor = image.size.height / imageView.frame.size.height;
+    
+    float factor = fmax(hfactor, vfactor);
+    
+    // Divide the size by the greater of the vertical or horizontal shrinkage factor
+    float newWidth = image.size.width / factor;
+    float newHeight = image.size.height / factor;
+    
+    // Then figure out if you need to offset it to center vertically or horizontally
+    float leftOffset = (imageView.frame.size.width - newWidth) / 2;
+    float topOffset = (imageView.frame.size.height - newHeight) / 2;
+    leftOffset += wid/12.8;
+    topOffset += heigh/19;
+    return CGRectMake(leftOffset, topOffset, newWidth, newHeight);
+
 }
-
-
 
 #pragma mark 绘制图层
 -(void)drawMyLayer{
@@ -84,19 +97,19 @@
 }
 
 #pragma mark 点击放大
--(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    UITouch *touch=[touches anyObject];
-    CALayer *layer=self.view.layer.sublayers[0];
-    CGFloat width=layer.bounds.size.width;
-    if (width==WIDTH) {
-        width=WIDTH*6;
-    }else{
-        width=WIDTH;
-    }
-    layer.bounds=CGRectMake(0, 0, width, width);
-    layer.position=[touch locationInView:self.view];
-    layer.cornerRadius=width/2;
-}
+//-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
+//    UITouch *touch=[touches anyObject];
+//    CALayer *layer=self.view.layer.sublayers[0];
+//    CGFloat width=layer.bounds.size.width;
+//    if (width==WIDTH) {
+//        width=WIDTH*6;
+//    }else{
+//        width=WIDTH;
+//    }
+//    layer.bounds=CGRectMake(0, 0, width, width);
+//    layer.position=[touch locationInView:self.view];
+//    layer.cornerRadius=width/2;
+//}
 
 /*
 #pragma mark - Navigation

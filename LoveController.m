@@ -11,7 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "HTML5Controller.h"
 
-@interface LoveController ()
+@interface LoveController ()<UIScrollViewDelegate>
 {
     NSMutableArray *dataArray;  //容量数组
     UIScrollView *wishScrollView;  //展示的模板的scrollView
@@ -59,6 +59,7 @@
     [self.view addSubview:wishScrollView];
     wishScrollView.pagingEnabled = YES;
     wishScrollView.showsHorizontalScrollIndicator = NO;
+    wishScrollView.delegate =self;
     wishScrollView.contentSize = CGSizeMake(dataArray.count*wid, 0);
     //imageView
     for (NSInteger i=0; i<dataArray.count; i++) {
@@ -90,6 +91,10 @@
     [self.navigationController pushViewController:htmlVC animated:YES];
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    int page = floor((scrollView.contentOffset.x - wid / 2)/wid)+1;
+    pagecontrol.currentPage = page;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

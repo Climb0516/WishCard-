@@ -61,6 +61,8 @@
 		631AF3541BE2324800DF15C7 /* MytabbarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF3531BE2324800DF15C7 /* MytabbarController.m */; };
 		631AF3571BE232C200DF15C7 /* BirthDayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF3561BE232C200DF15C7 /* BirthDayController.m */; };
 		631AF35A1BE232D200DF15C7 /* LoveController.m in Sources */ = {isa = PBXBuildFile; fileRef = 631AF3591BE232D200DF15C7 /* LoveController.m */; };
+		636B64D31BE702B60010B96C /* EditWishCardBean.m in Sources */ = {isa = PBXBuildFile; fileRef = 636B64D21BE702B60010B96C /* EditWishCardBean.m */; };
+		636B64D71BE714EF0010B96C /* EditWishCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = 636B64D61BE714EF0010B96C /* EditWishCardView.m */; };
 		637D703B1BE49E06001D2D71 /* EditWishCardModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 637D703A1BE49E06001D2D71 /* EditWishCardModel.m */; };
 		637D70561BE4ADF4001D2D71 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 637D703D1BE4ADF4001D2D71 /* LICENSE */; };
 		637D70571BE4ADF4001D2D71 /* MJDictionaryCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 637D70401BE4ADF4001D2D71 /* MJDictionaryCache.m */; };
@@ -209,6 +211,10 @@
 		631AF3561BE232C200DF15C7 /* BirthDayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BirthDayController.m; sourceTree = "<group>"; };
 		631AF3581BE232D200DF15C7 /* LoveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoveController.h; sourceTree = "<group>"; };
 		631AF3591BE232D200DF15C7 /* LoveController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoveController.m; sourceTree = "<group>"; };
+		636B64D11BE702B60010B96C /* EditWishCardBean.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWishCardBean.h; sourceTree = "<group>"; };
+		636B64D21BE702B60010B96C /* EditWishCardBean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWishCardBean.m; sourceTree = "<group>"; };
+		636B64D51BE714EF0010B96C /* EditWishCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWishCardView.h; sourceTree = "<group>"; };
+		636B64D61BE714EF0010B96C /* EditWishCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWishCardView.m; sourceTree = "<group>"; };
 		637D70391BE49E06001D2D71 /* EditWishCardModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWishCardModel.h; sourceTree = "<group>"; };
 		637D703A1BE49E06001D2D71 /* EditWishCardModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWishCardModel.m; sourceTree = "<group>"; };
 		637D703D1BE4ADF4001D2D71 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
@@ -305,6 +311,7 @@
 		631AF14E1BE20A0F00DF15C7 /* WishCard */ = {
 			isa = PBXGroup;
 			children = (
+				636B64D41BE7149B0010B96C /* View */,
 				63B0337B1BE33934005F16FE /* model */,
 				631AF2A71BE22EF400DF15C7 /* 3rdParty */,
 				631AF35B1BE237B700DF15C7 /* Unility */,
@@ -350,6 +357,7 @@
 		631AF2A71BE22EF400DF15C7 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				636B64D81BE75B580010B96C /* Hpper */,
 				637D703C1BE4ADF4001D2D71 /* MJExtension */,
 				63BCD2E81BE34A8200BE0CB7 /* NJKWebViewProgress */,
 				631AF2B61BE22EF400DF15C7 /* AlertVIew */,
@@ -568,6 +576,22 @@
 			name = Unility;
 			sourceTree = "<group>";
 		};
+		636B64D41BE7149B0010B96C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				636B64D51BE714EF0010B96C /* EditWishCardView.h */,
+				636B64D61BE714EF0010B96C /* EditWishCardView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		636B64D81BE75B580010B96C /* Hpper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Hpper;
+			sourceTree = "<group>";
+		};
 		637D703C1BE4ADF4001D2D71 /* MJExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -614,6 +638,8 @@
 				63B0337D1BE3395A005F16FE /* WishModel.m */,
 				637D70391BE49E06001D2D71 /* EditWishCardModel.h */,
 				637D703A1BE49E06001D2D71 /* EditWishCardModel.m */,
+				636B64D11BE702B60010B96C /* EditWishCardBean.h */,
+				636B64D21BE702B60010B96C /* EditWishCardBean.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -793,6 +819,7 @@
 				63BCD2EE1BE34A8200BE0CB7 /* NJKWebViewProgressView.m in Sources */,
 				631AF3331BE2308D00DF15C7 /* MASViewConstraint.m in Sources */,
 				631AF32C1BE2308D00DF15C7 /* UIWebView+AFNetworking.m in Sources */,
+				636B64D71BE714EF0010B96C /* EditWishCardView.m in Sources */,
 				631AF31C1BE2308D00DF15C7 /* AFHTTPSessionManager.m in Sources */,
 				631AF3201BE2308D00DF15C7 /* AFURLRequestSerialization.m in Sources */,
 				631AF1511BE20A0F00DF15C7 /* main.m in Sources */,
@@ -825,6 +852,7 @@
 				631AF2C91BE22EF500DF15C7 /* RootViewController.m in Sources */,
 				631AF3541BE2324800DF15C7 /* MytabbarController.m in Sources */,
 				631AF34B1BE230EF00DF15C7 /* README.md in Sources */,
+				636B64D31BE702B60010B96C /* EditWishCardBean.m in Sources */,
 				631AF2CD1BE22EF500DF15C7 /* Netmanager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -897,9 +925,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = libxml2.x;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = libxml2.x;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -935,8 +965,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = libxml2.x;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = libxml2.x;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -949,12 +982,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WishCard/WishCard.pch;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = WishCard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WishCard/WeChatSDK_1.5",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cctbn.ChinaTransport.WishCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -966,12 +1001,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ENABLE_BITCODE = NO;
 				GCC_PREFIX_HEADER = WishCard/WishCard.pch;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = WishCard/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/WishCard/WeChatSDK_1.5",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.cctbn.ChinaTransport.WishCard;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

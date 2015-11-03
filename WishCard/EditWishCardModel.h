@@ -10,24 +10,24 @@
 
 @interface EditWishCardModel : NSObject
 
+
 //  content
 @property (nonatomic,copy)NSString *conntent;
-//  id
-@property (nonatomic,copy)NSString *Id;
-//  page
-@property (nonatomic,copy)NSString *page;
+
 //  newAdd
-@property (nonatomic,copy)NSString *NewAdd;
+@property (nonatomic,copy)NSString *conntent_newAdd;
+//  id
+@property (nonatomic,copy)NSString *conntent_id;
 //  pageId
-@property (nonatomic,copy)NSString *pageId;
+@property (nonatomic,copy)NSString *conntent_pageId;
 //  pageMove
-@property (nonatomic,copy)NSString *pageMove;
+@property (nonatomic,copy)NSString *conntent_pageMove;
 //  sceneId
-@property (nonatomic,copy)NSString *sceneId;
+@property (nonatomic,copy)NSString *conntent_sceneId;
 //  type                控件种类（2是Label  3是背景  4是Image）
-@property (nonatomic,copy)NSString *type;
+@property (nonatomic,copy)NSString *conntent_type;
 //  viewTag
-@property (nonatomic,copy)NSString *viewTag;
+@property (nonatomic,copy)NSString *conntent_viewTag;
 //  css
 @property (nonatomic,copy)NSString *css_backgroundColor;
 @property (nonatomic,copy)NSString *css_borderColor;
@@ -56,11 +56,11 @@
 @property (nonatomic,copy)NSString *imgStyle_marginTop;
 @property (nonatomic,copy)NSString *imgStyle_width;
 // properties    /imgSrc       最底层背景图片
-@property (nonatomic,copy)NSString *imgSrc;
+@property (nonatomic,copy)NSString *Pro_imgSrc;
 // properties    /src
-@property (nonatomic,copy)NSString *src;
+@property (nonatomic,copy)NSString *Pro_src;
 // properties    /bgColor
-@property (nonatomic,copy)NSString *bgColor;
+@property (nonatomic,copy)NSString *Pro_bgColor;
 // properties    /width
 @property (nonatomic,copy)NSString *Pro_width;
 @property (nonatomic,copy)NSString *Pro_height;

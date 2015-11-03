@@ -51,7 +51,7 @@
     //创建目录
     [fileManager createDirectoryAtPath:[path stringByAppendingPathComponent:@"HttpCathes"] withIntermediateDirectories:YES attributes:nil error:nil];
     NSString *newpath = [NSString stringWithFormat:@"%@%@",[path stringByAppendingPathComponent:@"HttpCathes"],[urlString MD5Hash]];
-    if ([self IsRequestNetWorkWithResults]) {
+//    if ([self IsRequestNetWorkWithResults]) {
         AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
         [manager.responseSerializer setAcceptableContentTypes: [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil]];
          manager.requestSerializer.timeoutInterval = 30;
@@ -63,19 +63,19 @@
          {
              failedBlock(error.localizedDescription);
          }];
-    }else
-    {
-        if ([[NSFileManager defaultManager] fileExistsAtPath:newpath]&&[fileManager isTimeOutWithPath:newpath time:60*60 ]==NO)
-        {
-            NSData *data =[NSData dataWithContentsOfFile:newpath];
-            id result=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
-            // block 传出data
-            finishedBlock(result);
-        }else
-        {
-            failedBlock(@"没有相应的缓存");
-        }
-    }
+//    }else
+//    {
+//        if ([[NSFileManager defaultManager] fileExistsAtPath:newpath]&&[fileManager isTimeOutWithPath:newpath time:60*60 ]==NO)
+//        {
+//            NSData *data =[NSData dataWithContentsOfFile:newpath];
+//            id result=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//            // block 传出data
+//            finishedBlock(result);
+//        }else
+//        {
+//            failedBlock(@"没有相应的缓存");
+//        }
+//    }
 
     
       }

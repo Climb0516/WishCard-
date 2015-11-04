@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "631AF1641BE20A0F00DF15C7"
-               BuildableName = "WishCardTests.xctest"
+               BuildableName = "WishCardTests.app"
                BlueprintName = "WishCardTests"
                ReferencedContainer = "container:WishCard.xcodeproj">
             </BuildableReference>

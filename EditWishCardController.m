@@ -21,6 +21,8 @@
     NSMutableArray *dataArray;  //容量大数组
     UIScrollView *wishScrollView;  //展示模板Page的scrollView
     UIPageControl *pagecontrol;   //小白点
+    UILabel *label;
+    NSMutableDictionary *lableAttrDictionary;
 }
 @end
 
@@ -73,27 +75,27 @@
                 detEditModel.css_top =[self judgeDicEmpty:sccDic str:@"top"];
                 detEditModel.css_width =[self judgeDicEmpty:sccDic str:@"width"];
                 detEditModel.css_zIndex =[self judgeDicEmpty:sccDic str:@"zIndex"];
-
+                
                 NSDictionary *propertiesDic=detSubdic[@"properties"];
                 NSLog(@"propertiesDic::%@",propertiesDic);
-                 detEditModel.Pro_imgSrc =[propertiesDic valueForKey:@"imgSrc"];
-                 detEditModel.Pro_src =[propertiesDic valueForKey:@"src"];
-                 detEditModel.Pro_bgColor =[propertiesDic valueForKey:@"bgColor"];
-                 detEditModel.Pro_height =[propertiesDic valueForKey:@"height"];
-                 detEditModel.Pro_width =[propertiesDic valueForKey:@"width"];
+                detEditModel.Pro_imgSrc =[propertiesDic valueForKey:@"imgSrc"];
+                detEditModel.Pro_src =[propertiesDic valueForKey:@"src"];
+                detEditModel.Pro_bgColor =[propertiesDic valueForKey:@"bgColor"];
+                detEditModel.Pro_height =[propertiesDic valueForKey:@"height"];
+                detEditModel.Pro_width =[propertiesDic valueForKey:@"width"];
                 
-                    NSDictionary *animDic = [propertiesDic valueForKey:@"anim"];
-                    detEditModel.anim_countNum =[self judgeDicEmpty:animDic str:@"countNum"];
-                    detEditModel.anim_delay =[self judgeDicEmpty:animDic str:@"delay"];
-                    detEditModel.anim_direction =[self judgeDicEmpty:animDic str:@"direction"];
-                    detEditModel.anim_duration =[self judgeDicEmpty:animDic str:@"duration"];
-                    detEditModel.anim_type =[self judgeDicEmpty:animDic str:@"type"];
+                NSDictionary *animDic = [propertiesDic valueForKey:@"anim"];
+                detEditModel.anim_countNum =[self judgeDicEmpty:animDic str:@"countNum"];
+                detEditModel.anim_delay =[self judgeDicEmpty:animDic str:@"delay"];
+                detEditModel.anim_direction =[self judgeDicEmpty:animDic str:@"direction"];
+                detEditModel.anim_duration =[self judgeDicEmpty:animDic str:@"duration"];
+                detEditModel.anim_type =[self judgeDicEmpty:animDic str:@"type"];
                 
-                    NSDictionary *imgStyleDic = [propertiesDic valueForKey:@"anim"];
-                    detEditModel.imgStyle_height =[self judgeDicEmpty:imgStyleDic str:@"height"];
-                    detEditModel.imgStyle_marginLeft =[self judgeDicEmpty:imgStyleDic str:@"marginLeft"];
-                    detEditModel.imgStyle_marginTop =[self judgeDicEmpty:imgStyleDic str:@"marginTop"];
-                    detEditModel.imgStyle_width =[self judgeDicEmpty:imgStyleDic str:@"width"];
+                NSDictionary *imgStyleDic = [propertiesDic valueForKey:@"anim"];
+                detEditModel.imgStyle_height =[self judgeDicEmpty:imgStyleDic str:@"height"];
+                detEditModel.imgStyle_marginLeft =[self judgeDicEmpty:imgStyleDic str:@"marginLeft"];
+                detEditModel.imgStyle_marginTop =[self judgeDicEmpty:imgStyleDic str:@"marginTop"];
+                detEditModel.imgStyle_width =[self judgeDicEmpty:imgStyleDic str:@"width"];
                 
                 [testArray addObject:detEditModel];
             }
@@ -108,6 +110,7 @@
 }
 -(void)makeUI{
     //      展示模板的scrollView
+    lableAttrDictionary = [NSMutableDictionary dictionaryWithCapacity:1000];
     wishScrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, wid, 416*heigh/568)];
     [self.view addSubview:wishScrollView];
     wishScrollView.pagingEnabled = YES;
@@ -117,19 +120,23 @@
     if (dataArray.count>0) {
         for (NSInteger i=0; i<dataArray.count; i++) {
             EditWishCardBean *model = dataArray[i];
-//            EditWishCardView *view = [[EditWishCardView alloc]initWithFrame:CGRectMake(40+i*wid, 40, wid-80, heigh-180)];
-//            [wishScrollView addSubview:view];
+            //            EditWishCardView *view = [[EditWishCardView alloc]initWithFrame:CGRectMake(40+i*wid, 40, wid-80, heigh-180)];
+            //            [wishScrollView addSubview:view];
             
             UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(wid*i+22*wid/320, 0, wid-2*22*wid/320,  416*heigh/568)];
+            bgImageView.userInteractionEnabled = YES;
             [wishScrollView addSubview:bgImageView];
             for (NSInteger i=0; i<model.modelDataArray.count; i++) {
                 EditWishCardModel *editModel =model.modelDataArray[i];
-//                  label
+                //                  label
                 if ([editModel.conntent_type integerValue] ==2) {
                     NSLog(@"%@",editModel.css_left );
                     NSLog(@"%@",editModel.css_top );
                     NSLog(@"left:%ld,top:%ld",[self getIntgerFromNSstringWithString:editModel.css_left],[self getIntgerFromNSstringWithString:editModel.css_top]);
-                    UILabel *label =[[UILabel alloc] init];
+                    
+                    label =[[UILabel alloc] init];
+                    NSInteger tagNumber = [editModel.conntent_id integerValue];
+                    label.tag = [editModel.conntent_id integerValue];
                     label.frame = CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue]*276/320*wid/320, [editModel.css_height integerValue]*416/568*heigh/568);
                     if (editModel.css_backgroundColor.length>=10) {
                         NSArray *arr =[self colorFormString:editModel.css_backgroundColor];
@@ -141,16 +148,24 @@
                     }
                     label.layer.borderWidth = [self getIntgerFromNSstringWithString:editModel.css_borderWidth];
                     label.layer.cornerRadius = [self getIntgerFromNSstringWithString:editModel.css_borderRadius]*276/320*wid/320;
-                    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[editModel.conntent dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+                    NSMutableAttributedString * attrStr = [[NSMutableAttributedString alloc] initWithData:[editModel.conntent dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
                     label.attributedText = attrStr;
                     label.numberOfLines=0;
+                    label.userInteractionEnabled = YES;
+                    //                    lableAttrDictionary[tagNumber] = [attrStr];
+                    [lableAttrDictionary setObject:attrStr forKey:[NSString stringWithFormat:@"%@",editModel.conntent_id]];
+                    UITapGestureRecognizer *tapLabelGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLabelEditting:)];
+                    [label addGestureRecognizer:tapLabelGesture];
+                    
                     [bgImageView insertSubview:label atIndex:[editModel.css_zIndex integerValue]];
-//                    [bgImageView addSubview:label];
+                    
+                    //                    [bgImageView addSubview:label];
                 }
-//                  图片
+                //                  图片
                 else if ([editModel.conntent_type integerValue] ==4) {
                     NSLog(@"%ld,%ld",[editModel.Pro_width integerValue],[editModel.Pro_height integerValue]);
                     UIImageView *imgView=[[UIImageView alloc] init];
+                    imgView.userInteractionEnabled = YES;
                     imgView.frame =CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue]*276/320*wid/320, [editModel.css_height integerValue]*416/568*heigh/568);
                     NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",editModel.Pro_src];
                     NSURL *url =[NSURL URLWithString:urlString];
@@ -158,30 +173,32 @@
                     imgView.layer.masksToBounds = YES;
                     imgView.layer.borderWidth = [self getIntgerFromNSstringWithString:editModel.css_borderWidth];
                     imgView.layer.cornerRadius = [self getIntgerFromNSstringWithString:editModel.css_borderRadius];
+                    UITapGestureRecognizer *imageGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapImageEditting:)];
+                    [imgView addGestureRecognizer:imageGesture];
                     [bgImageView insertSubview:imgView atIndex:[editModel.css_zIndex integerValue]];
-//                     [bgImageView addSubview:imgView];
+                    //                     [bgImageView addSubview:imgView];
                 }
-//                  背景图片
+                //                  背景图片
                 else if ([editModel.conntent_type integerValue] ==3) {
                     NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",editModel.Pro_imgSrc];
                     NSURL *url =[NSURL URLWithString:urlString];
                     [bgImageView setImageWithURL:url placeholderImage:nil];
-
+                    
                 }
-
+                
             }
-
+            
         }
-
+        
         pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(wid/2-50, CGRectGetMaxY(wishScrollView.frame)+20, 100, 10)];
         pagecontrol.numberOfPages = dataArray.count;
         pagecontrol.pageIndicatorTintColor =[UIColor lightGrayColor];
         pagecontrol.currentPageIndicatorTintColor = [UIColor orangeColor];
         pagecontrol.tag = 600;
         [self.view addSubview:pagecontrol];
-
+        
     }
-   //       底下的View
+    //       底下的View
     UIView *botView =[[UIView alloc] initWithFrame:CGRectMake(0, heigh-49, wid, 49)];
     UIButton *backgroundbutton =[UIButton buttonWithType:UIButtonTypeCustom];
     backgroundbutton.frame =CGRectMake(0, 0, wid/2-0.5, 49);
@@ -195,13 +212,13 @@
     [musicButton setTitle:@"音乐" forState:UIControlStateNormal];
     [musicButton addTarget:self action:@selector(musicButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [botView addSubview:musicButton];
-
+    
     [self.view addSubview:botView];
 }
 -( NSInteger)getIntgerFromNSstringWithString:(NSString *)string{
-//    if ([self isPureInt:string]) {
-//        return [string integerValue];
-//    }
+    //    if ([self isPureInt:string]) {
+    //        return [string integerValue];
+    //    }
     NSString *sss =[NSString stringWithFormat:@"%@",string];
     if ([sss rangeOfString:@"p"].location==NSNotFound){
         return [sss integerValue];
@@ -210,11 +227,11 @@
     NSString *lastString =array[0];
     NSLog(@"lastString:%@",lastString);
     return [lastString integerValue];
-//    NSString *str =[sss stringByAppendingString:@"px"];
-//    NSArray *array = [string componentsSeparatedByString:@"p"];
-//    NSString *lastString =array[0];
-//    
-//    return [lastString integerValue];
+    //    NSString *str =[sss stringByAppendingString:@"px"];
+    //    NSArray *array = [string componentsSeparatedByString:@"p"];
+    //    NSString *lastString =array[0];
+    //
+    //    return [lastString integerValue];
 }
 ////   判断RGB
 -(NSArray *)colorFormString:(NSString *)string{
@@ -223,7 +240,7 @@
         NSRange range2 = [string rangeOfString:@")"];
         NSString * strings = [string substringWithRange:NSMakeRange(range1.location+1,range2.location-range1.location-1)];
         NSArray *array = [strings componentsSeparatedByString:@","];
-
+        
         return array;
     }
     return nil;
@@ -242,19 +259,43 @@
     int page = floor((scrollView.contentOffset.x - wid / 2)/wid)+1;
     pagecontrol.currentPage = page;
 }
+
+#pragma mark - tapGesture
+- (void)tapLabelEditting:(UITapGestureRecognizer *)ges{
+    NSLog(@"ddd%ld",ges.view.tag);
+    label = (UILabel *)[self.view viewWithTag:ges.view.tag];
+    label.text = @"ddddaf";
+//    label.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
+    label.layer.borderWidth = 10;
+    label.numberOfLines = 0;
+    NSString *key = [NSString stringWithFormat:@"%ld", ges.view.tag];
+    NSMutableAttributedString *attr = [lableAttrDictionary objectForKey:key];
+    NSInteger lenth = [attr.string length];
+    [attr replaceCharactersInRange:NSMakeRange(0, lenth) withString:@"1234567890qwertyu/niopasdfghjkl1234567890qwertyu/niopasdfghjkl"];
+    label.attributedText = attr;
+    NSLog(@"%@",attr);
+    
+    //    [self.view setNeedsDisplay];
+    
+    
+}
+- (void)tapImageEditting:(UITapGestureRecognizer *)ges{
+    NSLog(@"aaa");
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end

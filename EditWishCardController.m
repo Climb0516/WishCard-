@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor =[UIColor whiteColor];
+    self.view.backgroundColor =RGBCOLOR(232, 232, 232);
     [self colorFormString:nil];
     dataArray =[[NSMutableArray alloc] init];
     [self addimage:[UIImage imageNamed:@"back-icon"] title:nil selector:@selector(backClick) location:YES];
@@ -39,6 +39,7 @@
 }
 -(void)requestData{
     NSString *urlString =[Url queryModelPagesWishId:self.Id];
+    NSLog(@"urlString:%@",urlString);
     [Netmanager GetRequestWithUrlString:urlString finished:^(NSDictionary *responseobj) {
         NSArray *arr =responseobj[@"pagelist"];
         for (NSDictionary *subdic  in arr) {
@@ -107,7 +108,7 @@
 }
 -(void)makeUI{
     //      展示模板的scrollView
-    wishScrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, wid, heigh-64-40)];
+    wishScrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, wid, 416*heigh/568)];
     [self.view addSubview:wishScrollView];
     wishScrollView.pagingEnabled = YES;
     wishScrollView.delegate =self;
@@ -119,37 +120,48 @@
 //            EditWishCardView *view = [[EditWishCardView alloc]initWithFrame:CGRectMake(40+i*wid, 40, wid-80, heigh-180)];
 //            [wishScrollView addSubview:view];
             
-            UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(wid*i, 0, wid, heigh-64-40)];
+            UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(wid*i+22*wid/320, 0, wid-2*22*wid/320,  416*heigh/568)];
             [wishScrollView addSubview:bgImageView];
             for (NSInteger i=0; i<model.modelDataArray.count; i++) {
                 EditWishCardModel *editModel =model.modelDataArray[i];
-//                view.editWishCardModel =editModel;
+//                  label
                 if ([editModel.conntent_type integerValue] ==2) {
                     NSLog(@"%@",editModel.css_left );
                     NSLog(@"%@",editModel.css_top );
                     NSLog(@"left:%ld,top:%ld",[self getIntgerFromNSstringWithString:editModel.css_left],[self getIntgerFromNSstringWithString:editModel.css_top]);
                     UILabel *label =[[UILabel alloc] init];
-                    label.frame = CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue], [editModel.css_height integerValue]);
+                    label.frame = CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue]*276/320*wid/320, [editModel.css_height integerValue]*416/568*heigh/568);
                     if (editModel.css_backgroundColor.length>=10) {
                         NSArray *arr =[self colorFormString:editModel.css_backgroundColor];
                         label.backgroundColor = RGBACOLOR([arr[0] integerValue], [arr[1] integerValue], [arr[2] integerValue],[arr[3] floatValue]);
                     }
+                    if (editModel.css_borderColor.length>=10) {
+                        NSArray *arr =[self colorFormString:editModel.css_backgroundColor];
+                        label.layer.borderColor = RGBACOLOR([arr[0] integerValue], [arr[1] integerValue], [arr[2] integerValue],[arr[3] floatValue]).CGColor;
+                    }
+                    label.layer.borderWidth = [self getIntgerFromNSstringWithString:editModel.css_borderWidth];
+                    label.layer.cornerRadius = [self getIntgerFromNSstringWithString:editModel.css_borderRadius]*276/320*wid/320;
                     NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[editModel.conntent dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
                     label.attributedText = attrStr;
                     label.numberOfLines=0;
-//                    [bgImageView insertSubview:label atIndex:7-[editModel.css_zIndex integerValue]];
-                    [bgImageView addSubview:label];
+                    [bgImageView insertSubview:label atIndex:[editModel.css_zIndex integerValue]];
+//                    [bgImageView addSubview:label];
                 }
+//                  图片
                 else if ([editModel.conntent_type integerValue] ==4) {
                     NSLog(@"%ld,%ld",[editModel.Pro_width integerValue],[editModel.Pro_height integerValue]);
                     UIImageView *imgView=[[UIImageView alloc] init];
-                    imgView.frame =CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue], [editModel.css_height integerValue]);
+                    imgView.frame =CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue]*276/320*wid/320, [editModel.css_height integerValue]*416/568*heigh/568);
                     NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",editModel.Pro_src];
                     NSURL *url =[NSURL URLWithString:urlString];
                     [imgView setImageWithURL:url placeholderImage:nil];
-//                    [bgImageView insertSubview:imgView atIndex:7-[editModel.css_zIndex integerValue]];
-                     [bgImageView addSubview:imgView];
+                    imgView.layer.masksToBounds = YES;
+                    imgView.layer.borderWidth = [self getIntgerFromNSstringWithString:editModel.css_borderWidth];
+                    imgView.layer.cornerRadius = [self getIntgerFromNSstringWithString:editModel.css_borderRadius];
+                    [bgImageView insertSubview:imgView atIndex:[editModel.css_zIndex integerValue]];
+//                     [bgImageView addSubview:imgView];
                 }
+//                  背景图片
                 else if ([editModel.conntent_type integerValue] ==3) {
                     NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",editModel.Pro_imgSrc];
                     NSURL *url =[NSURL URLWithString:urlString];
@@ -161,7 +173,7 @@
 
         }
 
-        pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(wid/2-50, heigh-40, 100, 10)];
+        pagecontrol = [[UIPageControl alloc] initWithFrame:CGRectMake(wid/2-50, CGRectGetMaxY(wishScrollView.frame)+20, 100, 10)];
         pagecontrol.numberOfPages = dataArray.count;
         pagecontrol.pageIndicatorTintColor =[UIColor lightGrayColor];
         pagecontrol.currentPageIndicatorTintColor = [UIColor orangeColor];
@@ -170,15 +182,15 @@
 
     }
    //       底下的View
-    UIView *botView =[[UIView alloc] initWithFrame:CGRectMake(0, heigh-30, wid, 30)];
+    UIView *botView =[[UIView alloc] initWithFrame:CGRectMake(0, heigh-49, wid, 49)];
     UIButton *backgroundbutton =[UIButton buttonWithType:UIButtonTypeCustom];
-    backgroundbutton.frame =CGRectMake(0, 0, wid/2-0.5, 40);
+    backgroundbutton.frame =CGRectMake(0, 0, wid/2-0.5, 49);
     backgroundbutton.backgroundColor=[UIColor grayColor];
     [backgroundbutton setTitle:@"背景" forState:UIControlStateNormal];
     [backgroundbutton addTarget:self action:@selector(backgroundButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [botView addSubview:backgroundbutton];
     UIButton *musicButton =[UIButton buttonWithType:UIButtonTypeCustom];
-    musicButton.frame =CGRectMake(wid/2, 0, wid/2, 30);
+    musicButton.frame =CGRectMake(wid/2, 0, wid/2, 49);
     musicButton.backgroundColor=[UIColor grayColor];
     [musicButton setTitle:@"音乐" forState:UIControlStateNormal];
     [musicButton addTarget:self action:@selector(musicButtonClick) forControlEvents:UIControlEventTouchUpInside];

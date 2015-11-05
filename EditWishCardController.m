@@ -16,7 +16,7 @@
 //#import "TFHppleElement.h"
 
 #define krgb(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f]
-@interface EditWishCardController ()<UIScrollViewDelegate>
+@interface EditWishCardController ()<UIScrollViewDelegate,UITextViewDelegate>
 {
     NSMutableArray *dataArray;  //容量大数组
     UIScrollView *wishScrollView;  //展示模板Page的scrollView
@@ -24,6 +24,7 @@
     UILabel *label;
     NSMutableDictionary *lableAttrDictionary;
     UIView *editView;
+    UITextView *textView;
 }
 @end
 
@@ -216,8 +217,10 @@
     
     // 键盘上的view
     editView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh-64, wid, 64)];
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 20, wid-40, 40)];
-    
+    textView = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, wid-10, 60)];
+    textView.delegate = self;
+    [editView addSubview:textView];
+    [self.view addSubview:editView];
     [self.view addSubview:botView];
 }
 -( NSInteger)getIntgerFromNSstringWithString:(NSString *)string{
@@ -267,7 +270,6 @@
 
 #pragma mark - tapGesture
 - (void)tapLabelEditting:(UITapGestureRecognizer *)ges{
-    NSLog(@"ddd%ld",ges.view.tag);
     label = (UILabel *)[self.view viewWithTag:ges.view.tag];
     label.text = @"ddddaf";
 //    label.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
@@ -278,9 +280,38 @@
     NSInteger lenth = [attr.string length];
     [attr replaceCharactersInRange:NSMakeRange(0, lenth) withString:@"1234567890qwertyu/niopasdfghjkl1234567890qwertyu/niopasdfghjkl"];
     label.attributedText = attr;
-    NSLog(@"%@",attr);
+    textView.editable  = YES;
+    textView.attributedText = attr;
+    editView.frame = CGRectMake(0, heigh-(216+120), wid, 120);
+    editView.backgroundColor = [UIColor redColor];
+    [textView becomeFirstResponder];
+
+    [self textViewShouldBeginEditing:textView];
+}
+
+#pragma mark - textView Delegate
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView
+{
+    [UIView beginAnimations:nil context:NULL];
+//    self.view.frame=CGRectMake(0, -226, self.view.bounds.size.width, heigh);
+  
+    [UIView commitAnimations];
+    //    cardView.frame = CGRectMake(0, buttomView.frame.size.height-226, self.view.bounds.size.width, heigh);
+    //    cardView.userInteractionEnabled = YES;
+    //    self.navigationItem.rightBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIControlStateNormal target:self action:@selector(resignFirstResponder:)];
+    [self addimage:nil title:@"确定" selector:@selector(resignFirstResponder:) location:NO ];
     
-    //    [self.view setNeedsDisplay];
+    
+    return YES;
+}
+
+- (void) resignFirstResponder:(UIButton *) sender{
+    //    [textView resignFirstResponder];
+    [textView resignFirstResponder];
+//    wishScrollView.dragEnable = YES;
+    self.view.frame = CGRectMake(0, 0, wid, heigh);
+    self.navigationItem.rightBarButtonItem = nil;
+//    [self addimage:nil title:@"" selector:@selector(checkOutCoins) location:NO ];
     
     
 }

@@ -23,6 +23,7 @@
     UIPageControl *pagecontrol;   //小白点
     UILabel *label;
     NSMutableDictionary *lableAttrDictionary;
+    UIView *editView;
 }
 @end
 
@@ -212,6 +213,10 @@
     [musicButton setTitle:@"音乐" forState:UIControlStateNormal];
     [musicButton addTarget:self action:@selector(musicButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [botView addSubview:musicButton];
+    
+    // 键盘上的view
+    editView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh-64, wid, 64)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(20, 20, wid-40, 40)];
     
     [self.view addSubview:botView];
 }

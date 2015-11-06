@@ -25,6 +25,11 @@
     NSMutableDictionary *lableAttrDictionary;
     UIView *editView;
     UITextView *textView;
+    NSMutableAttributedString *attr; //字体属性
+    NSInteger lenth ;//所选文字字体长度
+    NSInteger labelTag; //临时存贮tag值
+    UIView *maskView;
+    UIButton *resignFirstResponderButton;
 }
 @end
 
@@ -214,14 +219,25 @@
     [musicButton setTitle:@"音乐" forState:UIControlStateNormal];
     [musicButton addTarget:self action:@selector(musicButtonClick) forControlEvents:UIControlEventTouchUpInside];
     [botView addSubview:musicButton];
+    [self.view addSubview:botView];
+    [self creatEditModeUI];
     
+}
+
+- (void)creatEditModeUI{
     // 键盘上的view
     editView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh-64, wid, 64)];
     textView = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, wid-10, 60)];
     textView.delegate = self;
+    resignFirstResponderButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    resignFirstResponderButton.frame =CGRectMake(wid-45, 60, 40, 25);
+    //    [resignFirstResponderButton setTitleColor:[UIColor colorWithRed:55 green:170 blue:252 alpha:1] forState:UIControlStateNormal];
+    [resignFirstResponderButton setTitleColor:RGBCOLOR(55, 170, 252) forState:UIControlStateNormal];
+    [resignFirstResponderButton setTitle:@"确定" forState:UIControlStateNormal];
+    [resignFirstResponderButton addTarget:self action:@selector(resignFirstResponder:) forControlEvents:UIControlEventTouchUpInside];
     [editView addSubview:textView];
+    [editView addSubview:resignFirstResponderButton];
     [self.view addSubview:editView];
-    [self.view addSubview:botView];
 }
 -( NSInteger)getIntgerFromNSstringWithString:(NSString *)string{
     //    if ([self isPureInt:string]) {
@@ -270,22 +286,27 @@
 
 #pragma mark - tapGesture
 - (void)tapLabelEditting:(UITapGestureRecognizer *)ges{
+    [self creatEditModeUI];
     label = (UILabel *)[self.view viewWithTag:ges.view.tag];
-    label.text = @"ddddaf";
+    labelTag = ges.view.tag;
 //    label.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
-    label.layer.borderWidth = 10;
+//    label.layer.borderWidth = 10;
     label.numberOfLines = 0;
     NSString *key = [NSString stringWithFormat:@"%ld", ges.view.tag];
-    NSMutableAttributedString *attr = [lableAttrDictionary objectForKey:key];
-    NSInteger lenth = [attr.string length];
-    [attr replaceCharactersInRange:NSMakeRange(0, lenth) withString:@"1234567890qwertyu/niopasdfghjkl1234567890qwertyu/niopasdfghjkl"];
-    label.attributedText = attr;
+    attr = [lableAttrDictionary objectForKey:key];
+    lenth = [attr.string length];
     textView.editable  = YES;
-    textView.attributedText = attr;
+    NSRange textRange = NSMakeRange (0, lenth);
+//    textView.attributedText = attr;
+    textView.text = attr.string;
+    textView.selectedRange = textRange;
     editView.frame = CGRectMake(0, heigh-(216+120), wid, 120);
-    editView.backgroundColor = [UIColor redColor];
+    editView.backgroundColor = [UIColor whiteColor];
+    maskView =[[UIView alloc] initWithFrame:CGRectMake(0, 0, wid, heigh-(216+120))];
+    maskView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+    [self.view addSubview:maskView];
     [textView becomeFirstResponder];
-
+    
     [self textViewShouldBeginEditing:textView];
 }
 
@@ -293,12 +314,7 @@
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
     [UIView beginAnimations:nil context:NULL];
-//    self.view.frame=CGRectMake(0, -226, self.view.bounds.size.width, heigh);
-  
     [UIView commitAnimations];
-    //    cardView.frame = CGRectMake(0, buttomView.frame.size.height-226, self.view.bounds.size.width, heigh);
-    //    cardView.userInteractionEnabled = YES;
-    //    self.navigationItem.rightBarButtonItem  = [[UIBarButtonItem alloc] initWithTitle:@"确定" style:UIControlStateNormal target:self action:@selector(resignFirstResponder:)];
     [self addimage:nil title:@"确定" selector:@selector(resignFirstResponder:) location:NO ];
     
     
@@ -306,14 +322,16 @@
 }
 
 - (void) resignFirstResponder:(UIButton *) sender{
-    //    [textView resignFirstResponder];
+    [resignFirstResponderButton removeFromSuperview];
+    label = (UILabel *)[self.view viewWithTag:labelTag];
+    [attr replaceCharactersInRange:NSMakeRange(0, lenth) withString:textView.text];
+    label.attributedText = attr;
     [textView resignFirstResponder];
 //    wishScrollView.dragEnable = YES;
-    self.view.frame = CGRectMake(0, 0, wid, heigh);
+    editView.frame = CGRectMake(0, -1, wid, 64);
+    [maskView removeFromSuperview];
     self.navigationItem.rightBarButtonItem = nil;
-//    [self addimage:nil title:@"" selector:@selector(checkOutCoins) location:NO ];
-    
-    
+
 }
 - (void)tapImageEditting:(UITapGestureRecognizer *)ges{
     NSLog(@"aaa");

@@ -80,6 +80,7 @@
 		63BCD2ED1BE34A8200BE0CB7 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2EA1BE34A8200BE0CB7 /* NJKWebViewProgress.m */; };
 		63BCD2EE1BE34A8200BE0CB7 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2EC1BE34A8200BE0CB7 /* NJKWebViewProgressView.m */; };
 		63BCD2F11BE34D7A00BE0CB7 /* EditWishCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */; };
+		D94ECA4F1BECAC1200AAC6E1 /* H5BGMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -242,6 +243,8 @@
 		63BCD2EC1BE34A8200BE0CB7 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		63BCD2EF1BE34D7A00BE0CB7 /* EditWishCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWishCardController.h; sourceTree = "<group>"; };
 		63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWishCardController.m; sourceTree = "<group>"; };
+		D94ECA4D1BECAC1200AAC6E1 /* H5BGMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5BGMViewController.h; sourceTree = "<group>"; };
+		D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5BGMViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -265,6 +268,8 @@
 		631AF1431BE20A0F00DF15C7 = {
 			isa = PBXGroup;
 			children = (
+				D94ECA4D1BECAC1200AAC6E1 /* H5BGMViewController.h */,
+				D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */,
 				631AF3521BE2324800DF15C7 /* MytabbarController.h */,
 				631AF3531BE2324800DF15C7 /* MytabbarController.m */,
 				631AF3551BE232C200DF15C7 /* BirthDayController.h */,
@@ -788,6 +793,7 @@
 				631AF3351BE2308D00DF15C7 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				637D705F1BE4ADF4001D2D71 /* NSObject+MJKeyValue.m in Sources */,
 				631AF3311BE2308D00DF15C7 /* MASLayoutConstraint.m in Sources */,
+				D94ECA4F1BECAC1200AAC6E1 /* H5BGMViewController.m in Sources */,
 				631AF3211BE2308D00DF15C7 /* AFURLResponseSerialization.m in Sources */,
 				637D70601BE4ADF4001D2D71 /* NSObject+MJProperty.m in Sources */,
 				637D705E1BE4ADF4001D2D71 /* NSObject+MJCoding.m in Sources */,

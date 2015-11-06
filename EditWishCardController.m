@@ -12,6 +12,7 @@
 #import "EditWishCardBean.h"
 #import "UIImageView+AFNetworking.h"
 #import "EditWishCardView.h"
+#import "H5BGMViewController.h"
 //#import "TFHpple.h"
 //#import "TFHppleElement.h"
 
@@ -226,7 +227,7 @@
 
 - (void)creatEditModeUI{
     // 键盘上的view
-    editView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh-64, wid, 64)];
+    editView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh, wid, 64)];
     textView = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, wid-10, 60)];
     textView.delegate = self;
     resignFirstResponderButton =[UIButton buttonWithType:UIButtonTypeCustom];
@@ -277,7 +278,8 @@
     NSLog(@"backGround");
 }
 -(void)musicButtonClick{
-    NSLog(@"music");
+    H5BGMViewController *hvc = [[H5BGMViewController alloc] init];
+    [self.navigationController pushViewController:hvc animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     int page = floor((scrollView.contentOffset.x - wid / 2)/wid)+1;

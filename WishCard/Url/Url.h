@@ -67,5 +67,6 @@
 
 +(NSString *)queryWishModelsWishType:(NSString *)type;
 +(NSString *)queryModelPagesWishId:(NSString *)Id;
++ (NSString *)queryBGMData;
 
 @end

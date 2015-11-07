@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
-@interface H5BGMViewController : UIViewController
+@interface H5BGMViewController : RootViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

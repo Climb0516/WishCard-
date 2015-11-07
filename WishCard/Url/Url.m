@@ -88,6 +88,10 @@
     return [self GetURL:@"queryModelPages" withParam:str];
 }
 
++ (NSString *)queryBGMData{
+    return [self GetURL:@"queryWishResource" withParam:@"2"];
+}
+
 
 
 

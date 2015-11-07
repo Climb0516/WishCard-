@@ -81,6 +81,7 @@
 		63BCD2EE1BE34A8200BE0CB7 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2EC1BE34A8200BE0CB7 /* NJKWebViewProgressView.m */; };
 		63BCD2F11BE34D7A00BE0CB7 /* EditWishCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */; };
 		D94ECA4F1BECAC1200AAC6E1 /* H5BGMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */; settings = {ASSET_TAGS = (); }; };
+		D9C332DD1BEDF19700E8A853 /* BGMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C332DC1BEDF19700E8A853 /* BGMModel.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +246,8 @@
 		63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWishCardController.m; sourceTree = "<group>"; };
 		D94ECA4D1BECAC1200AAC6E1 /* H5BGMViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = H5BGMViewController.h; sourceTree = "<group>"; };
 		D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5BGMViewController.m; sourceTree = "<group>"; };
+		D9C332DB1BEDF19700E8A853 /* BGMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGMModel.h; sourceTree = "<group>"; };
+		D9C332DC1BEDF19700E8A853 /* BGMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGMModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -628,6 +631,8 @@
 				637D703A1BE49E06001D2D71 /* EditWishCardModel.m */,
 				636B64D11BE702B60010B96C /* EditWishCardBean.h */,
 				636B64D21BE702B60010B96C /* EditWishCardBean.m */,
+				D9C332DB1BEDF19700E8A853 /* BGMModel.h */,
+				D9C332DC1BEDF19700E8A853 /* BGMModel.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -807,6 +812,7 @@
 				631AF32E1BE2308D00DF15C7 /* MASCompositeConstraint.m in Sources */,
 				631AF2CF1BE22EF500DF15C7 /* NSFileManager+pathMethod.m in Sources */,
 				631AF3321BE2308D00DF15C7 /* MASViewAttribute.m in Sources */,
+				D9C332DD1BEDF19700E8A853 /* BGMModel.m in Sources */,
 				637D705A1BE4ADF4001D2D71 /* MJProperty.m in Sources */,
 				631AF2C91BE22EF500DF15C7 /* RootViewController.m in Sources */,
 				631AF3541BE2324800DF15C7 /* MytabbarController.m in Sources */,

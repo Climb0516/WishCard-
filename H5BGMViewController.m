@@ -15,6 +15,9 @@
     UITableView *musicTableView;
     NSMutableArray *musicDataArray;
     NSMutableArray *caonimaArray;
+    AVPlayer *newPlayer;
+    NSInteger selectedCell;
+    NSString *BGMId;
 }
 @end
 
@@ -23,22 +26,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 //    NSString *str =  @"http://192.168.3.3:90/Uploads/syspic/mp3/yq0KA1R9XYCAVcSWAA8tADeZN1g520.mp3";
-//    AVPlayer *newPlayer = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:str]];
+    newPlayer = [[AVPlayer alloc] init];
     [self requestData];
-    [self creatUI];
+    [self addimage:[UIImage imageNamed:@"back-icon"] title:nil selector:@selector(backClick) location:YES];
+
 }
 
 - (void)creatUI{
     musicTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, wid, heigh-64)];
     musicTableView.delegate = self;
     musicTableView.dataSource = self;
-
     [self.view addSubview:musicTableView];
 }
 
 - (void)requestData{
+    selectedCell = 0;
     musicDataArray = [[NSMutableArray alloc] init];
-    [musicDataArray addObject:@"s"];
+    BGMModel *bmodel = [[BGMModel alloc] init];
+    bmodel.name = @"无音乐";
+    bmodel.Id = @"noMusic";
+    [musicDataArray addObject:bmodel];
+//    [musicDataArray addObject:@"s"];
 //    NSString *url = [Url queryBGMData];
     NSString *url =  @"http://192.168.3.1:8080/radio/queryWishResource/ios/deviceid/1.0?type=2";
 
@@ -53,9 +61,9 @@
             bmodel.url =[self judgeDicEmpty:subArr str:@"url"];
             bmodel.thumburl =[self judgeDicEmpty:subArr str:@"thumburl"];
             [musicDataArray addObject:bmodel];
-            [musicDataArray addObject:bmodel];
-            NSLog(@"ff");
         }
+        [self creatUI];
+
     }failed:^(NSString *errorMsg){
         NSLog(@"BGMerror:%@",errorMsg);
     }];
@@ -67,28 +75,40 @@
 }
 
 #pragma mark 返回每组行数
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    NSLog(@"计算魅族行数%lu",(unsigned long)[musicDataArray count]);
+
     return [musicDataArray count];
 }
 
 #pragma mark返回每行的单元格
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier=@"UITableViewCellIdentifierKey1";
-    //首先根据标识去缓存池取
-    UITableViewCell *cell=[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    //如果缓存池没有到则重新创建并放到缓存池中
-    if(!cell){
-        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
-    }
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+
+    UITableViewCell *cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     BGMModel *model = musicDataArray[indexPath.row];
     cell.textLabel.text = model.name;
+    if (indexPath.row==selectedCell) {
+        cell.imageView.image = [UIImage imageNamed:@"拖动按钮"];
+    }
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
+    BGMModel *model = musicDataArray[indexPath.row];
+    NSString *url = [Url queryBGMUrl:model.url];
+    newPlayer = [[AVPlayer alloc] initWithURL:[NSURL URLWithString:url]];
+    selectedCell = indexPath.row;
+    BGMId = model.Id;
+    [newPlayer play];
+    [tableView reloadData];
 }
 
+-(void)backClick{
+    [self.navigationController popViewControllerAnimated:YES];
+    if ([_delegate respondsToSelector:@selector(sendBMGId:)]) {
+        [_delegate sendBMGId:BGMId];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

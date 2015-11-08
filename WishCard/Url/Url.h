@@ -68,5 +68,9 @@
 +(NSString *)queryWishModelsWishType:(NSString *)type;
 +(NSString *)queryModelPagesWishId:(NSString *)Id;
 + (NSString *)queryBGMData;
++ (NSString *)queryBGMUrl:(NSString *)url;
++ (NSString *)GetMP3URL:(NSString *)methodName withParam:(NSString *)param;
+
+
 
 @end

@@ -23,6 +23,11 @@
     NSString *str =[NSString stringWithFormat:@"%@/%@/ios/%@/%@%@",kHostAddr,methodName,kCURRENT_UUID,kCURRENT_APP_VERSION,param];
     return str;
 }
+
++ (NSString *)GetMP3URL:(NSString *)methodName withParam:(NSString *)param{
+    NSString *str =[NSString stringWithFormat:@"%@/%@/%@",kHostAddrMusic,methodName,param];
+    return str;
+}
 +(NSString *)GetImageWithUrl:(NSString *)urlString{
     NSString *url =[kHostAddr stringByAppendingString:@"/getImage?uri="];
     return [url stringByAppendingString:[NSString stringWithFormat:@"%@",urlString]];
@@ -90,6 +95,10 @@
 
 + (NSString *)queryBGMData{
     return [self GetURL:@"queryWishResource" withParam:@"2"];
+}
+
++ (NSString *)queryBGMUrl:(NSString *)url{
+    return [self GetMP3URL:@"Uploads" withParam:url];
 }
 
 

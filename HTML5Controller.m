@@ -10,6 +10,8 @@
 #import "NJKWebViewProgress.h"
 #import "NJKWebViewProgressView.h"
 #import "EditWishCardController.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface HTML5Controller ()<UIWebViewDelegate,NJKWebViewProgressDelegate>
 {
@@ -48,10 +50,17 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)goEdit{
+  
+//    [webView reload];
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
     EditWishCardController *editVC =[[EditWishCardController alloc] init];
     editVC.Id = self.model.Id;
     editVC.name =self.model.name;
     [self.navigationController pushViewController:editVC animated:YES];
+    NSURL *url =[NSURL URLWithString:@"https://www.baidu.com"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    [webView loadRequest:request];
+    [webView reload];
 }
 #pragma mark - UIload
 -(void)WebView{
@@ -71,6 +80,9 @@
     NSURL *url =[NSURL URLWithString:self.model.url];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
+//    NSURL *url1 =[NSURL URLWithString:@"https://www.baidu.com"];
+//    NSURLRequest *request1 = [NSURLRequest requestWithURL:url1];
+//    [webView loadRequest:request1];
     //    webView.delegate =self;
     //     加着句话是为了让webView能播放声音
     webView.mediaPlaybackRequiresUserAction=NO;

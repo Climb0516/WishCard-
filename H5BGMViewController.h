@@ -9,6 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "RootViewController.h"
 
+@protocol H5BGMDelegate <NSObject>
+
+- (void)sendBMGId:(NSString *)Id;
+
+@end
+
 @interface H5BGMViewController : RootViewController<UITableViewDataSource,UITableViewDelegate>
+
+@property (weak,nonatomic)id<H5BGMDelegate> delegate;
 
 @end

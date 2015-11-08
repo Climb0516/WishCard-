@@ -17,7 +17,7 @@
 //#import "TFHppleElement.h"
 
 #define krgb(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f]
-@interface EditWishCardController ()<UIScrollViewDelegate,UITextViewDelegate>
+@interface EditWishCardController ()<UIScrollViewDelegate,UITextViewDelegate,H5BGMDelegate>
 {
     NSMutableArray *dataArray;  //容量大数组
     UIScrollView *wishScrollView;  //展示模板Page的scrollView
@@ -279,6 +279,7 @@
 }
 -(void)musicButtonClick{
     H5BGMViewController *hvc = [[H5BGMViewController alloc] init];
+    hvc.delegate = self;
     [self.navigationController pushViewController:hvc animated:YES];
 }
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -337,6 +338,11 @@
 }
 - (void)tapImageEditting:(UITapGestureRecognizer *)ges{
     NSLog(@"aaa");
+}
+
+#pragma mark - H5BGMDelegate
+- (void)sendBMGId:(NSString *)Id{
+    NSLog(@"!!!!!!!!%@",Id);
 }
 
 - (void)didReceiveMemoryWarning {

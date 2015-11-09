@@ -13,16 +13,18 @@
 #import "UIImageView+AFNetworking.h"
 #import "EditWishCardView.h"
 #import "H5BGMViewController.h"
+#import "ChooseImageViewController.h"
 //#import "TFHpple.h"
 //#import "TFHppleElement.h"
 
 #define krgb(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f]
-@interface EditWishCardController ()<UIScrollViewDelegate,UITextViewDelegate,H5BGMDelegate>
+@interface EditWishCardController ()<UIScrollViewDelegate,UITextViewDelegate,H5BGMDelegate,PECropViewControllerDelegate,ChooseImageStyle>
 {
     NSMutableArray *dataArray;  //容量大数组
     UIScrollView *wishScrollView;  //展示模板Page的scrollView
     UIPageControl *pagecontrol;   //小白点
-    UILabel *label;
+    UILabel *label;         //更改文字的临时label
+    UIImageView *imageView; //更改图片的临时imageView
     NSMutableDictionary *lableAttrDictionary;
     UIView *editView;
     UITextView *textView;
@@ -112,6 +114,7 @@
             [dataArray addObject:editModel];
         }
         [self makeUI];
+        imageView = [[UIImageView alloc] init];
         [self createToolBar];
 
     } failed:^(NSString *errorMsg) {
@@ -177,6 +180,7 @@
                     NSLog(@"%ld,%ld",[editModel.Pro_width integerValue],[editModel.Pro_height integerValue]);
                     UIImageView *imgView=[[UIImageView alloc] init];
                     imgView.userInteractionEnabled = YES;
+                    imgView.tag = [editModel.conntent_id integerValue];
                     imgView.frame =CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue]*276/320*wid/320, [editModel.css_height integerValue]*416/568*heigh/568);
                     NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",editModel.Pro_src];
                     NSURL *url =[NSURL URLWithString:urlString];
@@ -316,6 +320,12 @@
     [self textViewShouldBeginEditing:textView];
 }
 
+- (void)tapImageEditting:(UITapGestureRecognizer *)ges{
+    [self tapImageClick];
+    imageView = (UIImageView *)[self.view viewWithTag:ges.view.tag];
+    
+}
+
 #pragma mark - textView Delegate
 -(BOOL)textViewShouldBeginEditing:(UITextView *)textView
 {
@@ -339,41 +349,71 @@
     self.navigationItem.rightBarButtonItem = nil;
 
 }
-- (void)tapImageEditting:(UITapGestureRecognizer *)ges{
-    [self tapImageClick];
-}
 
-#pragma mark - H5BGMDelegate
+
+#pragma mark - H5BGMDelegate 回传背景音乐ID
 - (void)sendBMGId:(NSString *)Id{
     NSLog(@"!!!!!!!!%@",Id);
 }
 
 -(void)createToolBar{
     buttomView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh, wid, 100)];
-    buttomView.backgroundColor = [UIColor lightGrayColor];
+    buttomView.backgroundColor = RGBACOLOR(240, 248, 255, 1);
     NSArray *titleArray =@[@"更换图片",@"裁剪图片"];
     for (NSInteger i=0; i<2; i++) {
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        itemButton.frame =CGRectMake(i*wid/2, 0, wid/2, 40);
+        itemButton.tag = i+20151109;
+        itemButton.frame =CGRectMake(i*wid/2+30, 20, wid/3, 40);
         itemButton.backgroundColor = [UIColor blackColor];
         [itemButton setTitle:titleArray[i] forState:UIControlStateNormal];
-        [itemButton addTarget:self action:@selector(bottomBarDisAppear) forControlEvents:UIControlEventTouchUpInside];
+        [itemButton addTarget:self action:@selector(handelImage:) forControlEvents:UIControlEventTouchUpInside];
         [buttomView addSubview:itemButton];
     }
     [self.view addSubview:buttomView];
 
 }
 
+#pragma mark - 更换图片
+- (void)handelImage:(UIButton *)btn{
+    if (btn.tag==20151109) {
+        ChooseImageViewController *cvc = [[ChooseImageViewController alloc] init];
+        cvc.delegate = self;
+        CGRect rect =  [self getFrameSizeForImage:imageView.image inImageView:imageView];
+        cvc.imageRect = rect;
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:cvc];
+        
+        [self presentViewController:navigationController animated:YES completion:NULL];
+        
+    }else if (btn.tag==20151110){
+        PECropViewController *controller = [[PECropViewController alloc] init];
+        controller.delegate = self;
+        controller.image = imageView.image;
+        
+//        UIImage *image = imageView.image;
+//        CGFloat width = image.size.width;
+//        CGFloat height = image.size.height;
+//        CGFloat length = MIN(width, height);
+//        controller.imageCropRect = CGRectMake((width - length) / 2,
+//                                              (height - length) / 2,
+//                                              length,
+//                                              length);
+//        [self.navigationController pushViewController:controller animated:YES];
+        
+        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
+//
+//        
+        [self presentViewController:navigationController animated:YES completion:NULL];
+
+    }
+}
+
 -(void)tapImageClick{
     self.navigationController.toolbar.hidden = YES;
     UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
-//    bottomView =[[UIView alloc] initWithFrame:CGRectMake(0, heigh, wid, 100)];
     [UIView animateWithDuration:0.5 animations:^{
         buttomView.frame = CGRectMake(0, heigh-100, wid, 100);
     } completion:nil];
 
-    
-    
 }
 
 -(void)bottomBarDisAppear{
@@ -386,8 +426,54 @@
 //        [topView removeFromSuperview];
     }];
     
+}
+
+#pragma mark - PECropViewControllerDelegate methods
+
+- (void)cropViewController:(PECropViewController *)controller didFinishCroppingImage:(UIImage *)croppedImage
+                 transform:(CGAffineTransform)transform
+                  cropRect:(CGRect)cropRect
+{
+//     [self.navigationController popViewControllerAnimated:YES];
+//    [controller popoverPresentationController];
+    [controller dismissViewControllerAnimated:YES completion:nil];
+    imageView.image = croppedImage;
+    controller.keepingCropAspectRatio = YES;
     
 }
+
+- (void)cropViewControllerDidCancel:(PECropViewController *)controller
+{
+    
+    [controller dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - ChooseImageDelegate
+
+- (void)getImageFromChooseImageStyle:(UIImage *)image{
+    imageView.image = image;
+}
+
+- (CGRect)getFrameSizeForImage:(UIImage *)image inImageView:(UIImageView *)ImageView {
+    
+    float hfactor = image.size.width / ImageView.frame.size.width;
+    float vfactor = image.size.height / ImageView.frame.size.height;
+    
+    float factor = fmax(hfactor, vfactor);
+    
+    // Divide the size by the greater of the vertical or horizontal shrinkage factor
+    float newWidth = image.size.width / factor;
+    float newHeight = image.size.height / factor;
+    
+    // Then figure out if you need to offset it to center vertically or horizontally
+    float leftOffset = (imageView.frame.size.width - newWidth) / 2;
+    float topOffset = (imageView.frame.size.height - newHeight) / 2;
+    leftOffset += wid/12.8;
+    topOffset += heigh/19;
+    return CGRectMake(leftOffset, topOffset, newWidth, newHeight);
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

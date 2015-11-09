@@ -7,6 +7,8 @@
 //
 
 #import "RootViewController.h"
+#import "PECropViewController.h"
+
 
 
 @interface EditWishCardController : RootViewController

@@ -8,6 +8,16 @@
 
 #import "RootViewController.h"
 
+@protocol ChooseImageStyle <NSObject>
+
+- (void)getImageFromChooseImageStyle:(UIImage *)image;
+
+@end
+
 @interface ChooseImageViewController : RootViewController
+
+@property (weak,nonatomic)id<ChooseImageStyle> delegate;
+@property (nonatomic) CGRect imageRect;
+@property (nonatomic) UIImage *hahImage;
 
 @end

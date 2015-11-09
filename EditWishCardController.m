@@ -31,6 +31,7 @@
     NSInteger labelTag; //临时存贮tag值
     UIView *maskView;
     UIButton *resignFirstResponderButton;
+    UIView *buttomView;
 }
 @end
 
@@ -111,6 +112,8 @@
             [dataArray addObject:editModel];
         }
         [self makeUI];
+        [self createToolBar];
+
     } failed:^(NSString *errorMsg) {
         NSLog(@"erroe:%@",errorMsg);
         
@@ -337,7 +340,7 @@
 
 }
 - (void)tapImageEditting:(UITapGestureRecognizer *)ges{
-    NSLog(@"aaa");
+    [self tapImageClick];
 }
 
 #pragma mark - H5BGMDelegate
@@ -345,6 +348,46 @@
     NSLog(@"!!!!!!!!%@",Id);
 }
 
+-(void)createToolBar{
+    buttomView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh, wid, 100)];
+    buttomView.backgroundColor = [UIColor lightGrayColor];
+    NSArray *titleArray =@[@"更换图片",@"裁剪图片"];
+    for (NSInteger i=0; i<2; i++) {
+        UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        itemButton.frame =CGRectMake(i*wid/2, 0, wid/2, 40);
+        itemButton.backgroundColor = [UIColor blackColor];
+        [itemButton setTitle:titleArray[i] forState:UIControlStateNormal];
+        [itemButton addTarget:self action:@selector(bottomBarDisAppear) forControlEvents:UIControlEventTouchUpInside];
+        [buttomView addSubview:itemButton];
+    }
+    [self.view addSubview:buttomView];
+
+}
+
+-(void)tapImageClick{
+    self.navigationController.toolbar.hidden = YES;
+    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
+//    bottomView =[[UIView alloc] initWithFrame:CGRectMake(0, heigh, wid, 100)];
+    [UIView animateWithDuration:0.5 animations:^{
+        buttomView.frame = CGRectMake(0, heigh-100, wid, 100);
+    } completion:nil];
+
+    
+    
+}
+
+-(void)bottomBarDisAppear{
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.frame = CGRectMake(0, 0, wid, heigh);
+        buttomView.frame =  CGRectMake(0, heigh, wid, 100);
+    } completion:^(BOOL finished) {
+        
+//        [topView removeFromSuperview];
+    }];
+    
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

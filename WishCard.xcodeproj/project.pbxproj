@@ -82,6 +82,7 @@
 		63BCD2F11BE34D7A00BE0CB7 /* EditWishCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */; };
 		D94ECA4F1BECAC1200AAC6E1 /* H5BGMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */; settings = {ASSET_TAGS = (); }; };
 		D9C332DD1BEDF19700E8A853 /* BGMModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D9C332DC1BEDF19700E8A853 /* BGMModel.m */; settings = {ASSET_TAGS = (); }; };
+		D9FAE4691BF044CD005AB532 /* ChooseImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FAE4681BF044CD005AB532 /* ChooseImageViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +249,8 @@
 		D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = H5BGMViewController.m; sourceTree = "<group>"; };
 		D9C332DB1BEDF19700E8A853 /* BGMModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BGMModel.h; sourceTree = "<group>"; };
 		D9C332DC1BEDF19700E8A853 /* BGMModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BGMModel.m; sourceTree = "<group>"; };
+		D9FAE4671BF044CD005AB532 /* ChooseImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseImageViewController.h; sourceTree = "<group>"; };
+		D9FAE4681BF044CD005AB532 /* ChooseImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +274,8 @@
 		631AF1431BE20A0F00DF15C7 = {
 			isa = PBXGroup;
 			children = (
+				D9FAE4671BF044CD005AB532 /* ChooseImageViewController.h */,
+				D9FAE4681BF044CD005AB532 /* ChooseImageViewController.m */,
 				D94ECA4D1BECAC1200AAC6E1 /* H5BGMViewController.h */,
 				D94ECA4E1BECAC1200AAC6E1 /* H5BGMViewController.m */,
 				631AF3521BE2324800DF15C7 /* MytabbarController.h */,
@@ -761,6 +766,7 @@
 				631AF3271BE2308D00DF15C7 /* UIAlertView+AFNetworking.m in Sources */,
 				637D705D1BE4ADF4001D2D71 /* NSObject+MJClass.m in Sources */,
 				631AF3571BE232C200DF15C7 /* BirthDayController.m in Sources */,
+				D9FAE4691BF044CD005AB532 /* ChooseImageViewController.m in Sources */,
 				631AF3251BE2308D00DF15C7 /* AFNetworkActivityIndicatorManager.m in Sources */,
 				631AF35A1BE232D200DF15C7 /* LoveController.m in Sources */,
 				637D70581BE4ADF4001D2D71 /* MJExtensionConst.m in Sources */,

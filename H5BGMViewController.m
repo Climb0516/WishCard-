@@ -25,7 +25,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    NSString *str =  @"http://192.168.3.3:90/Uploads/syspic/mp3/yq0KA1R9XYCAVcSWAA8tADeZN1g520.mp3";
     newPlayer = [[AVPlayer alloc] init];
     [self requestData];
     [self addimage:[UIImage imageNamed:@"back-icon"] title:nil selector:@selector(backClick) location:YES];
@@ -43,8 +42,8 @@
     selectedCell = 0;
     musicDataArray = [[NSMutableArray alloc] init];
     BGMModel *bmodel = [[BGMModel alloc] init];
-    bmodel.name = @"无音乐";
-    bmodel.Id = @"noMusic";
+    bmodel.name = @"默认音乐";
+    bmodel.Id = @"defaultMusic";
     [musicDataArray addObject:bmodel];
 //    [musicDataArray addObject:@"s"];
 //    NSString *url = [Url queryBGMData];

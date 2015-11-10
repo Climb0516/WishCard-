@@ -23,11 +23,6 @@
     NSString *str =[NSString stringWithFormat:@"%@/%@/ios/%@/%@%@",kHostAddr,methodName,kCURRENT_UUID,kCURRENT_APP_VERSION,param];
     return str;
 }
-
-+ (NSString *)GetMP3URL:(NSString *)methodName withParam:(NSString *)param{
-    NSString *str =[NSString stringWithFormat:@"%@/%@/%@",kHostAddrMusic,methodName,param];
-    return str;
-}
 +(NSString *)GetImageWithUrl:(NSString *)urlString{
     NSString *url =[kHostAddr stringByAppendingString:@"/getImage?uri="];
     return [url stringByAppendingString:[NSString stringWithFormat:@"%@",urlString]];
@@ -93,6 +88,26 @@
     return [self GetURL:@"queryModelPages" withParam:str];
 }
 
+//+(NSString *)postWishCard
+//{
+//    NSString *urlString =[NSString stringWithFormat:@"%@/updateModelPages/ios/deviceid/1.0",kHostAddr];
+//    return urlString;
+//}
++(NSString *)postWishCard
+{
+    NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.10:8080/radio/updateModelPages/ios/deviceid/1.0"];
+    return urlString;
+}
++(NSString *)postImage
+{
+    NSString *urlString = [NSString stringWithFormat:@"%@/index.php?c=upfile&a=uploadFile&bizType=0&fileType=1",kWishCardAddr];
+    return urlString;
+}
+
++ (NSString *)GetMP3URL:(NSString *)methodName withParam:(NSString *)param{
+    NSString *str =[NSString stringWithFormat:@"%@/%@/%@",kWishCardAddr,methodName,param];
+    return str;
+}
 + (NSString *)queryBGMData{
     return [self GetURL:@"queryWishResource" withParam:@"2"];
 }
@@ -100,10 +115,5 @@
 + (NSString *)queryBGMUrl:(NSString *)url{
     return [self GetMP3URL:@"Uploads" withParam:url];
 }
-
-
-
-
-
 
 @end

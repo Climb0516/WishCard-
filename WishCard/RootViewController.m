@@ -31,6 +31,7 @@
   
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 //      导航栏的title
 -(void)addTiTle:(NSString *)title
 {

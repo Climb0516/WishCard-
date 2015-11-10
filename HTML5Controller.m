@@ -10,8 +10,6 @@
 #import "NJKWebViewProgress.h"
 #import "NJKWebViewProgressView.h"
 #import "EditWishCardController.h"
-#import <AVFoundation/AVFoundation.h>
-
 
 @interface HTML5Controller ()<UIWebViewDelegate,NJKWebViewProgressDelegate>
 {
@@ -50,17 +48,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)goEdit{
-  
-//    [webView reload];
-    [[AVAudioSession sharedInstance] setActive:NO error:nil];
     EditWishCardController *editVC =[[EditWishCardController alloc] init];
     editVC.Id = self.model.Id;
     editVC.name =self.model.name;
     [self.navigationController pushViewController:editVC animated:YES];
-    NSURL *url =[NSURL URLWithString:@"https://www.baidu.com"];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:request];
-    [webView reload];
+}
+-(void)editButtonClick{
+    [self goEdit];
 }
 #pragma mark - UIload
 -(void)WebView{
@@ -80,13 +74,16 @@
     NSURL *url =[NSURL URLWithString:self.model.url];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
-//    NSURL *url1 =[NSURL URLWithString:@"https://www.baidu.com"];
-//    NSURLRequest *request1 = [NSURLRequest requestWithURL:url1];
-//    [webView loadRequest:request1];
     //    webView.delegate =self;
     //     加着句话是为了让webView能播放声音
     webView.mediaPlaybackRequiresUserAction=NO;
     [self.view addSubview:webView];
+    
+    UIButton *editButton =[UIButton buttonWithType:UIButtonTypeCustom];
+    editButton.frame = CGRectMake(wid/2-37.5, heigh-100, 75, 75);
+    [editButton setImage:[UIImage imageNamed:@"使用"] forState:UIControlStateNormal];
+    [editButton addTarget:self action:@selector(editButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:editButton];
     
     
 }

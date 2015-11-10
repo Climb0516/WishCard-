@@ -49,7 +49,8 @@
     else if ([self.editWishCardModel.conntent_type integerValue] ==4) {
         NSLog(@"%ld,%ld",[self.editWishCardModel.Pro_width integerValue],[self.editWishCardModel.Pro_height integerValue]);
         imgView.frame =CGRectMake([self getIntgerFromNSstringWithString:self.editWishCardModel.css_left], [self getIntgerFromNSstringWithString:self.editWishCardModel.css_top], [self.editWishCardModel.css_width integerValue], [self.editWishCardModel.css_height integerValue]);
-        NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",self.editWishCardModel.Pro_src];
+//        NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",self.editWishCardModel.Pro_src];
+         NSString *urlString =[kWishCardAddr stringByAppendingString:self.editWishCardModel.Pro_src];
         NSURL *url =[NSURL URLWithString:urlString];
         [imgView setImageWithURL:url placeholderImage:nil];
 //        [self addSubview:imgView];
@@ -57,7 +58,8 @@
     }
     else if ([self.editWishCardModel.conntent_type integerValue] ==3) {
                 bgImgView.frame =CGRectMake(0, 0, wid-80, heigh-180);
-        NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",self.editWishCardModel.Pro_imgSrc];
+//        NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",self.editWishCardModel.Pro_imgSrc];
+        NSString *urlString =[kWishCardAddr stringByAppendingString:self.editWishCardModel.Pro_imgSrc];
         NSURL *url =[NSURL URLWithString:urlString];
         [bgImgView setImageWithURL:url placeholderImage:nil];
         [self insertSubview:bgImgView atIndex:0];

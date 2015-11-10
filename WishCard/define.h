@@ -19,6 +19,10 @@
 #define wid [UIScreen mainScreen].bounds.size.width
 #define heigh [UIScreen mainScreen].bounds.size.height
 
+#define wishLeft 40
+#define wishTop heigh*0.05
+#define wishHeigh 500
+#define wishWid 320
 //颜色
 #define RGBCOLOR(r,g,b) [UIColor colorWithRed:(r)/255.0f green:(g)/255.0f blue:(b)/255.0f alpha:1]
 #define RGBACOLOR(r,g,b,a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)]
@@ -29,15 +33,15 @@
 
 #if ((_APP_ENVIRMENT_) == 0)
 #define kHostAddr  @"http://103.43.184.235:8080/radio"
-#define kHostAddrMusic  @"http://103.43.184.235:8080/
 #elif ((_APP_ENVIRMENT_) == 1)
 #define kHostAddr  @"http://192.168.3.1:8080/radio"
-#define kHostAddrMusic  @"http://192.168.3.3:90"
-
 #endif
 
+//#define kWishCardAddr @"http://www.cctbn.com:90"
+
+#define kWishCardAddr @"http://192.168.3.3:90"
+
 #define kCodeOK @"0000"
-#define kWishCardAddr @"http://www.cctbn.com:90"
 
 
 

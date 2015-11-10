@@ -42,8 +42,6 @@
             failedBlock(@"没有相应的缓存");
         }
     }
-
-    
 }
 +(void)GetRequestWithUrlString:(NSString *)urlString finished:(DownloadFinishedBlock)finishedBlock failed:(DownloadFailedBlock)failedBlock{
     NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -89,5 +87,7 @@
         return YES;
     }
 }
+
+
 
 @end

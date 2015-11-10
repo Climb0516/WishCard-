@@ -21,6 +21,7 @@
 @interface EditWishCardController ()<UIScrollViewDelegate,UITextViewDelegate,H5BGMDelegate,PECropViewControllerDelegate,ChooseImageStyle>
 {
     NSMutableArray *dataArray;  //容量大数组
+    UIImageView *bgImageView;   //背景图片
     UIScrollView *wishScrollView;  //展示模板Page的scrollView
     UIPageControl *pagecontrol;   //小白点
     UILabel *label;         //更改文字的临时label
@@ -32,6 +33,7 @@
     NSInteger lenth ;//所选文字字体长度
     NSInteger labelTag; //临时存贮tag值
     UIView *maskView;
+    UIView *imageMaskView;
     UIButton *resignFirstResponderButton;
     UIView *buttomView;
 }
@@ -137,7 +139,7 @@
             //            EditWishCardView *view = [[EditWishCardView alloc]initWithFrame:CGRectMake(40+i*wid, 40, wid-80, heigh-180)];
             //            [wishScrollView addSubview:view];
             
-            UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(wid*i+22*wid/320, 0, wid-2*22*wid/320,  416*heigh/568)];
+            bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(wid*i+22*wid/320, 0, wid-2*22*wid/320,  416*heigh/568)];
             bgImageView.userInteractionEnabled = YES;
             [wishScrollView addSubview:bgImageView];
             for (NSInteger i=0; i<model.modelDataArray.count; i++) {
@@ -296,7 +298,9 @@
 
 #pragma mark - tapGesture
 - (void)tapLabelEditting:(UITapGestureRecognizer *)ges{
-    [self creatEditModeUI];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self creatEditModeUI];
+    } completion:nil];
     label = (UILabel *)[self.view viewWithTag:ges.view.tag];
     labelTag = ges.view.tag;
 //    label.layer.borderColor = (__bridge CGColorRef _Nullable)([UIColor redColor]);
@@ -316,12 +320,12 @@
     maskView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
     [self.view addSubview:maskView];
     [textView becomeFirstResponder];
-    
     [self textViewShouldBeginEditing:textView];
 }
 
 - (void)tapImageEditting:(UITapGestureRecognizer *)ges{
     [self tapImageClick];
+    
     imageView = (UIImageView *)[self.view viewWithTag:ges.view.tag];
     
 }
@@ -349,7 +353,6 @@
     self.navigationItem.rightBarButtonItem = nil;
 
 }
-
 
 #pragma mark - H5BGMDelegate 回传背景音乐ID
 - (void)sendBMGId:(NSString *)Id{
@@ -380,14 +383,24 @@
         cvc.delegate = self;
         CGRect rect =  [self getFrameSizeForImage:imageView.image inImageView:imageView];
         cvc.imageRect = rect;
+        CGFloat width = imageView.image.size.width;
+        CGFloat height = imageView.image.size.height;
+        CGFloat aspectRatio = width/height;
+        cvc.cropAspectRatio = aspectRatio;
         UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:cvc];
         
         [self presentViewController:navigationController animated:YES completion:NULL];
         
     }else if (btn.tag==20151110){
+        //裁剪图片
+        
         PECropViewController *controller = [[PECropViewController alloc] init];
         controller.delegate = self;
         controller.image = imageView.image;
+        CGFloat width = imageView.image.size.width;
+        CGFloat height = imageView.image.size.height;
+        CGFloat aspectRatio = width/height;
+        controller.cropAspectRatio = aspectRatio;
         
 //        UIImage *image = imageView.image;
 //        CGFloat width = image.size.width;
@@ -409,10 +422,17 @@
 
 -(void)tapImageClick{
     self.navigationController.toolbar.hidden = YES;
-    UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
     [UIView animateWithDuration:0.5 animations:^{
+        
         buttomView.frame = CGRectMake(0, heigh-100, wid, 100);
-    } completion:nil];
+        UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bottomBarDisAppear)];
+        imageMaskView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, wid, heigh-100)];
+        imageMaskView.backgroundColor = RGBACOLOR(0, 0, 0, 0.5);
+        [imageMaskView addGestureRecognizer:tap];
+        [self.view addSubview:imageMaskView];
+    } completion:^(BOOL finished){
+        
+    }];
 
 }
 
@@ -421,6 +441,7 @@
     [UIView animateWithDuration:0.3 animations:^{
         self.view.frame = CGRectMake(0, 0, wid, heigh);
         buttomView.frame =  CGRectMake(0, heigh, wid, 100);
+        [imageMaskView removeFromSuperview];
     } completion:^(BOOL finished) {
         
 //        [topView removeFromSuperview];
@@ -434,24 +455,28 @@
                  transform:(CGAffineTransform)transform
                   cropRect:(CGRect)cropRect
 {
-//     [self.navigationController popViewControllerAnimated:YES];
-//    [controller popoverPresentationController];
     [controller dismissViewControllerAnimated:YES completion:nil];
     imageView.image = croppedImage;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
     controller.keepingCropAspectRatio = YES;
+    [self bottomBarDisAppear];
     
 }
 
 - (void)cropViewControllerDidCancel:(PECropViewController *)controller
 {
-    
     [controller dismissViewControllerAnimated:YES completion:NULL];
+    [self bottomBarDisAppear];
+
 }
 
 #pragma mark - ChooseImageDelegate
 
 - (void)getImageFromChooseImageStyle:(UIImage *)image{
     imageView.image = image;
+    imageView.contentMode = UIViewContentModeScaleAspectFill;
+    [self bottomBarDisAppear];
+
 }
 
 - (CGRect)getFrameSizeForImage:(UIImage *)image inImageView:(UIImageView *)ImageView {

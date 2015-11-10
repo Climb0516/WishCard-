@@ -473,7 +473,7 @@ static const CGFloat MarginLeft = 20.0f;
     [UIView animateWithDuration:0.25 delay:0.0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
         self.scrollView.bounds = cropRect;
         [self.scrollView zoomToRect:zoomRect animated:NO];
-        
+
         [self layoutCropRectViewWithCropRect:cropRect];
     } completion:NULL];
 }

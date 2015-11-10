@@ -19,5 +19,6 @@
 @property (weak,nonatomic)id<ChooseImageStyle> delegate;
 @property (nonatomic) CGRect imageRect;
 @property (nonatomic) UIImage *hahImage;
+@property (nonatomic) CGFloat cropAspectRatio;
 
 @end

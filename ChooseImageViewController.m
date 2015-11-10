@@ -45,8 +45,6 @@
 {
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     tempImage = image;
-    
-    //    [picker dismissModalViewControllerAnimated:YES];
     [picker dismissViewControllerAnimated:YES completion:^{
         [self openEditor];
     }];
@@ -62,6 +60,7 @@
     PECropViewController *controller = [[PECropViewController alloc] init];
     controller.delegate = self;
     controller.image = tempImage;
+    controller.cropAspectRatio = self.cropAspectRatio;
 //    UIImage *image = self.imageView.image;
 //    CGFloat width = image.size.width;
 //    CGFloat height = image.size.height;
@@ -70,8 +69,8 @@
 //                                          (height - length) / 2,
 //                                          length,
 //                                          length);
-    controller.imageCropRect = _imageRect;
-    controller.cropAspectRatio = 1.0f/1.0f;
+//    controller.imageCropRect = _imageRect;
+//    controller.cropAspectRatio = 1.0f/1.0f;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:controller];
     
     [self presentViewController:navigationController animated:YES completion:NULL];

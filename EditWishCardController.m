@@ -36,6 +36,7 @@
     UIView *imageMaskView;
     UIButton *resignFirstResponderButton;
     UIView *buttomView;
+    NSInteger currentScrollViewPage;
 }
 @end
 
@@ -50,7 +51,7 @@
     [self addimage:[UIImage imageNamed:@"back-icon"] title:nil selector:@selector(backClick) location:YES];
     [self addTiTle:self.name];
     [self requestData];
-    
+    currentScrollViewPage = 0;
 }
 -(void)requestData{
     NSString *urlString =[Url queryModelPagesWishId:self.Id];
@@ -141,6 +142,7 @@
             
             bgImageView = [[UIImageView alloc] initWithFrame:CGRectMake(wid*i+22*wid/320, 0, wid-2*22*wid/320,  416*heigh/568)];
             bgImageView.userInteractionEnabled = YES;
+             bgImageView.tag = 120151110+i;
             [wishScrollView addSubview:bgImageView];
             for (NSInteger i=0; i<model.modelDataArray.count; i++) {
                 EditWishCardModel *editModel =model.modelDataArray[i];
@@ -184,7 +186,7 @@
                     imgView.userInteractionEnabled = YES;
                     imgView.tag = [editModel.conntent_id integerValue];
                     imgView.frame =CGRectMake([self getIntgerFromNSstringWithString:editModel.css_left], [self getIntgerFromNSstringWithString:editModel.css_top], [editModel.css_width integerValue]*276/320*wid/320, [editModel.css_height integerValue]*416/568*heigh/568);
-                    NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",editModel.Pro_src];
+                    NSString *urlString =[NSString stringWithFormat:@"%@/Uploads/%@",kWishCardAddr,editModel.Pro_src];
                     NSURL *url =[NSURL URLWithString:urlString];
                     [imgView setImageWithURL:url placeholderImage:nil];
                     imgView.layer.masksToBounds = YES;
@@ -197,9 +199,12 @@
                 }
                 //                  背景图片
                 else if ([editModel.conntent_type integerValue] ==3) {
-                    NSString *urlString =[NSString stringWithFormat:@"http://192.168.7.1/Uploads/%@",editModel.Pro_imgSrc];
+                    NSString *urlString =[NSString stringWithFormat:@"%@/Uploads/%@",kWishCardAddr,editModel.Pro_imgSrc];
                     NSURL *url =[NSURL URLWithString:urlString];
+                    
+
                     [bgImageView setImageWithURL:url placeholderImage:nil];
+                   
                     
                 }
                 
@@ -284,7 +289,19 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)backgroundButtonClick{
-    NSLog(@"backGround");
+    ChooseImageViewController *cvc = [[ChooseImageViewController alloc] init];
+    cvc.delegate = self;
+//    UIImageView *bImageView = [[UIImageView alloc] init];
+    imageView = (UIImageView *)[self.view viewWithTag:120151110+currentScrollViewPage];
+    CGRect rect =  [self getFrameSizeForImage:imageView.image inImageView:imageView];
+    cvc.imageRect = rect;
+    CGFloat width = imageView.image.size.width;
+    CGFloat height = imageView.image.size.height;
+    CGFloat aspectRatio = width/height;
+    cvc.cropAspectRatio = aspectRatio;
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:cvc];
+    
+    [self presentViewController:navigationController animated:YES completion:NULL];
 }
 -(void)musicButtonClick{
     H5BGMViewController *hvc = [[H5BGMViewController alloc] init];
@@ -294,6 +311,7 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     int page = floor((scrollView.contentOffset.x - wid / 2)/wid)+1;
     pagecontrol.currentPage = page;
+    currentScrollViewPage = page;
 }
 
 #pragma mark - tapGesture

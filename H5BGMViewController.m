@@ -69,14 +69,11 @@
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    NSLog(@"计算分组数");
     return 1;
 }
 
 #pragma mark 返回每组行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSLog(@"计算魅族行数%lu",(unsigned long)[musicDataArray count]);
-
     return [musicDataArray count];
 }
 
@@ -88,6 +85,8 @@
     cell.textLabel.text = model.name;
     if (indexPath.row==selectedCell) {
         cell.imageView.image = [UIImage imageNamed:@"拖动按钮"];
+    }else{
+        cell.imageView.image = [UIImage imageNamed:@"拖拽按钮UnSelected"];
     }
     return cell;
 }

@@ -33,9 +33,11 @@
 #elif ((_APP_ENVIRMENT_) == 1)
 #define kHostAddr  @"http://192.168.3.1:8080/radio"
 #define kHostAddrMusic  @"http://192.168.3.3:90"
+
 #endif
 
 #define kCodeOK @"0000"
+#define kWishCardAddr @"http://www.cctbn.com:90"
 
 
 

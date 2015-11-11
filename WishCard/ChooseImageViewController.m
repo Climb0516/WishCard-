@@ -32,6 +32,7 @@
     UIButton *chooseImageFromLiabreyButton = [[UIButton alloc] initWithFrame:CGRectMake(BUTTON_GAP, 64+BUTTON_GAP, BUTTON_WIDTH, BUTTON_WIDTH)];
     chooseImageFromLiabreyButton.backgroundColor = [UIColor redColor];
     [chooseImageFromLiabreyButton addTarget:self action:@selector(chooseImageFromLib:) forControlEvents:UIControlEventTouchDown];
+    [chooseImageFromLiabreyButton setBackgroundImage:[UIImage imageNamed:@"CHOOSE_IMAGE_FROM_PHONE" ] forState:UIControlStateNormal];
     [self.view addSubview:chooseImageFromLiabreyButton];
 }
 

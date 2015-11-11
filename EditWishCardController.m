@@ -494,7 +494,7 @@
 }
 -(void)createToolBar{
     topView =[[UIView alloc] initWithFrame:CGRectMake(0, heigh, wid, heigh-64-100)];
-    topView.backgroundColor = [UIColor whiteColor];
+    topView.backgroundColor = [UIColor blackColor];
     topView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapClick)];
     [topView addGestureRecognizer:tap];
@@ -505,10 +505,10 @@
     NSArray *titleArray =@[@"更换图片",@"裁剪图片"];
     for (NSInteger i=0; i<2; i++) {
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        itemButton.frame =CGRectMake(i*wid/2+10, 10, wid/2-20, 40);
+        itemButton.frame =CGRectMake(i*wid/2+10, 25, wid/2-20, 50);
         itemButton.tag = i+20151109;
-        itemButton.backgroundColor = [UIColor blackColor];
-        [itemButton setTitle:titleArray[i] forState:UIControlStateNormal];
+        [itemButton setBackgroundImage:[UIImage imageNamed:titleArray[i]] forState:UIControlStateNormal];
+//        [itemButton setTitle:titleArray[i] forState:UIControlStateNormal];
         [itemButton addTarget:self action:@selector(handelImage:) forControlEvents:UIControlEventTouchUpInside];
         [buttomView addSubview:itemButton];
     }

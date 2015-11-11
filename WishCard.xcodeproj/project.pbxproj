@@ -92,6 +92,7 @@
 		63BCD2ED1BE34A8200BE0CB7 /* NJKWebViewProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2EA1BE34A8200BE0CB7 /* NJKWebViewProgress.m */; };
 		63BCD2EE1BE34A8200BE0CB7 /* NJKWebViewProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2EC1BE34A8200BE0CB7 /* NJKWebViewProgressView.m */; };
 		63BCD2F11BE34D7A00BE0CB7 /* EditWishCardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */; };
+		D9FFAA281BF338E100916EAC /* CHOOSE_IMAGE_FROM_PHONE.png in Resources */ = {isa = PBXBuildFile; fileRef = D9FFAA271BF338E100916EAC /* CHOOSE_IMAGE_FROM_PHONE.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -275,6 +276,7 @@
 		63BCD2EC1BE34A8200BE0CB7 /* NJKWebViewProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NJKWebViewProgressView.m; sourceTree = "<group>"; };
 		63BCD2EF1BE34D7A00BE0CB7 /* EditWishCardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditWishCardController.h; sourceTree = "<group>"; };
 		63BCD2F01BE34D7A00BE0CB7 /* EditWishCardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditWishCardController.m; sourceTree = "<group>"; };
+		D9FFAA271BF338E100916EAC /* CHOOSE_IMAGE_FROM_PHONE.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CHOOSE_IMAGE_FROM_PHONE.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -301,6 +303,7 @@
 				6349ECAA1BEC9EB40037C61C /* 描述@2x.png */,
 				6349ECAE1BECA43C0037C61C /* 名字@2x.png */,
 				6349EC9D1BEC51A20037C61C /* 使用@2x.png */,
+				D9FFAA271BF338E100916EAC /* CHOOSE_IMAGE_FROM_PHONE.png */,
 				6349EC9F1BEC575C0037C61C /* 背景@2x.png */,
 				6349ECA01BEC575C0037C61C /* 背景选中@2x.png */,
 				6349ECA11BEC575C0037C61C /* 设置@2x.png */,
@@ -790,6 +793,7 @@
 				631AF34A1BE230EF00DF15C7 /* LICENSE.txt in Resources */,
 				631AF15C1BE20A0F00DF15C7 /* Assets.xcassets in Resources */,
 				6349ECA41BEC575C0037C61C /* 背景选中@2x.png in Resources */,
+				D9FFAA281BF338E100916EAC /* CHOOSE_IMAGE_FROM_PHONE.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

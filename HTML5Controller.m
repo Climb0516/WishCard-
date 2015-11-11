@@ -10,6 +10,8 @@
 #import "NJKWebViewProgress.h"
 #import "NJKWebViewProgressView.h"
 #import "EditWishCardController.h"
+#import <AVFoundation/AVFoundation.h>
+
 
 @interface HTML5Controller ()<UIWebViewDelegate,NJKWebViewProgressDelegate>
 {
@@ -48,9 +50,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(void)goEdit{
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
     EditWishCardController *editVC =[[EditWishCardController alloc] init];
     editVC.Id = self.model.Id;
     editVC.name =self.model.name;
+    webView.mediaPlaybackRequiresUserAction = YES;
+    [webView reload];
     [self.navigationController pushViewController:editVC animated:YES];
 }
 -(void)editButtonClick{

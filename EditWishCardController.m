@@ -561,12 +561,13 @@
 }
 //   换图片 裁剪图片 点击事件
 -(void)bottomBarDisAppear{
-    NSLog(@"现在第几页:%ld",currentScrollViewPage);
-     NSLog(@"imageView.tag:%ld",imageView.tag);
+    NSLog(@"现在第几页:%ld",(long)currentScrollViewPage);
+     NSLog(@"imageView.tag:%ld",(long)imageView.tag);
     NSString *urlString =[Url postImage];
     NSLog(@"postImage:%@",urlString);
     UIImage *image =imageView.image;
-    NSData *imageData = UIImagePNGRepresentation(image);
+    NSData *imageData = UIImageJPEGRepresentation(image,0.1);
+//    NSData *imageData = UIImagePNGRepresentation(image);
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -581,8 +582,8 @@
 //        for (EditWishCardBean *model in dataArray) {
          EditWishCardBean *model =dataArray[currentScrollViewPage];
             for (EditWishCardModel *editModel in model.modelDataArray) {
-                if ([[NSString stringWithFormat:@"%@",editModel.conntent_id] isEqualToString:[NSString stringWithFormat:@"%ld",imageView.tag]]) {
-                    NSLog(@"editmodel:%@,,,%ld",editModel.conntent_id,imageView.tag);
+                if ([[NSString stringWithFormat:@"%@",editModel.conntent_id] isEqualToString:[NSString stringWithFormat:@"%ld",(long)imageView.tag]]) {
+                    NSLog(@"editmodel:%@,,,%ld",editModel.conntent_id,(long)imageView.tag);
                     NSLog(@"%@",editModel.conntent);
                     editModel.judgeBool =YES;
                     if ([[NSString stringWithFormat:@"%@",editModel.conntent_type] isEqualToString:@"4"]) {

@@ -501,8 +501,12 @@
     topView.alpha = 0.7;
     [self.view addSubview:topView];
     buttomView = [[UIView alloc] initWithFrame:CGRectMake(0, heigh, wid, 100)];
-    buttomView.backgroundColor = [UIColor lightGrayColor];
-    NSArray *titleArray =@[@"更换图片",@"裁剪图片"];
+    buttomView.backgroundColor = RGBACOLOR(0, 20, 41, 1);
+//    UIImage *chageImage = [UIImage imageNamed];
+//    UIImage *clipImage = [UIImage imageNamed:];
+
+    NSArray *titleArray =@[@"EdittingWishCard_Image_changeImage",@"EdittingWishCard_Image_clipImage"];
+    
     for (NSInteger i=0; i<2; i++) {
         UIButton *itemButton = [UIButton buttonWithType:UIButtonTypeCustom];
         itemButton.frame =CGRectMake(i*wid/2+10, 25, wid/2-20, 50);
